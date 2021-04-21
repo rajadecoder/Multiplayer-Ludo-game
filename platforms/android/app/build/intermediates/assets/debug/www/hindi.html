@@ -1,0 +1,2630 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+
+
+
+  <script src="js/materialize.min.js"></script>
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+
+  <link rel="stylesheet" href="css/index.css" />
+  <script src="js/index.js"></script>
+
+  <script type="text/javascript" src="cordova.js"></script>
+
+  <title>SpotdoIt</title>
+
+
+  <script type="text/javascript">
+
+  </script>
+
+  <style>
+  @font-face {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Goudy Bookletter 1911'), local('GoudyBookletter1911'), url(https://fonts.gstatic.com/s/goudybookletter1911/v7/sykt-z54laciWfKv-kX8krex0jDiD2HbY6IJshzQRYEHAQ.woff) format('woff');
+  }
+
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0ISYttDfA.woff) format('woff');
+  }
+  /* fallback */
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+  }
+
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+
+
+
+  .card {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+  }
+
+  h1 {
+    font-family:  verdana;
+
+    font-size: 50px;
+    color:#000 ;
+    text-shadow: 2px 2px 5px red;
+  }
+
+  h2 {
+    font-family: verdana;
+    font-size: 30px;
+    color: #E74C3C;
+    text-shadow: 1px 1px 5px black;
+  }
+
+
+
+  .rating {
+    font-size: 4em;
+    background: linear-gradient(to right, #f22, #f22 20%, #000 1%, #000 99%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgba(0,0,0,0);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  }
+
+  /** Page formatting, not related to this pen **/
+
+  footer {
+    padding: 15px;
+  }
+
+  footer a {
+    text-decoration:none;
+    color: #a53;
+  }
+
+  .stars {
+    background: #34495E;
+    height: 40px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+    box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+  }
+
+  .stars input {
+    position: absolute;
+    left: -999999px;
+  }
+
+  label {
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    color: transparent;
+  }
+
+  label::before {
+    content: '★';
+    color: #ffffff;
+    font-size: 30px;
+    line-height: 30px;
+    margin-right: -100%;
+  }
+
+
+  label:hover ~ label::before,
+  .stars input:checked ~ label::before {
+    color: #ffa500;
+    font-size: 35px;
+  }
+
+
+  #mySidenav{
+    width:0;
+  }
+
+
+
+
+
+
+  // OFFSET FOR LOWER NAVBAR
+  .navbar-fixed {
+    top:-64px;
+  }
+
+
+  // NAVBAR TWEAK
+  // Prevents content jump when navbar becomes fixed
+  .navbar-lower {
+    @media only screen and (max-width: 600px) {height:49px;} // SMALL
+    @media only screen and (min-width: 600px) and (max-width: 992px) {max-height:29px;} // MEDIUM
+    @media only screen and (min-width: 993px) {height:112px;} // LARGE
+  }
+
+  // ADD SHADOW TO LOWER NAVBAR
+  .navbar-lower nav {
+    // Not working. Hmmm.
+    box-shadow:
+    0 2px 2px -2px rgba(0, 0, 0, 0.14),
+    0 1px 5px -2px rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px  rgba(0, 0, 0, 0.2);
+  }
+
+
+  // FIX NAVBAR TAB HEIGHT ISSUE AFTER SCROLL
+  .nav-extended {
+    @media only screen and (max-width: 600px) {max-height:48px;} // SMALL
+    @media only screen and (min-width: 600px) and (max-width: 992px) {max-height:48px;} // MEDIUM
+    @media only screen and (min-width: 993px) {max-height:112px;} // LARGE
+  }
+
+  // FIX SIDEBAR'S OVERLAY ISSUE
+  // Not working. Hmmm.
+  .side-nav {
+    z-index:999;
+  }
+  #sidenav-overlay {
+    z-index:800;
+  }
+  .navbar-fixed {
+    z-index:900;
+  }
+
+  nav .fadeInLogo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    float: left;
+    display: none;
+  }
+
+  nav .input-field input[type=search] {
+    width:0px;
+  }
+  nav .input-field input[type=search]:focus {
+    width:320px;
+    color: transparent;                     // Remove blinking cursor 1/2
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.87); // Remove blinking cursor 2/2
+  }
+  .row2-noclear:after {
+    clear:none!important;
+  }
+
+  ul#dropdown1.dropdown-content {width:400px!important;}
+  ul#dropdown1.dropdown-content:active {width:400px!important;}
+
+  #photo-bg {
+    background-image: url(https://burst.shopifycdn.com/photos/country-cottage-sunset_925x.jpg);
+    background-size: cover;
+
+  }
+
+  .side-nav li>a {
+    padding: 0 16px;
+  }
+  .side-nav .divider {
+    margin:0;
+    height:8px;
+    border-bottom:1px solid #e0e0e0;
+    background-color: transparent;
+  }
+
+  .sidenav-header {
+    background: url("../images/user-bg.jpg") no-repeat center center;
+    background-size: cover;
+    margin-bottom: 0px;
+    padding: 15px 0 0 15px;
+    .row2 {
+      margin-bottom: 0;
+    }
+  }
+  .sidenav-footer {
+    margin-bottom: 0px;
+    padding: 0;
+    .row2 {
+      margin-bottom: 0;
+      .social-icons {
+        a {
+          opacity: 0.5;
+          padding: 0;
+          text-align:center;
+          &:hover {
+            background-color:inherit;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+
+  .nav-transparent {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .nav-breadcrumbs-dark {
+    .breadcrumb {
+      color: rgba(0,0,0,0.5);
+    }
+    .breadcrumb:last-child {
+      color: rgba(0,0,0,1);
+    }
+    .breadcrumb:before {
+      color: rgba(0,0,0,0.2);
+    }
+  }
+
+  #tx-live-lang-container {
+    background-color: rgb(252, 252, 252);
+    z-index: 999;
+    #tx-live-lang-picker {
+      background-color: rgb(252, 252, 252);
+      li {
+        color: rgba(0, 0, 0, 0.87);
+        &:hover {
+          color: inherit;
+          background-color: rgb(253, 234, 235);
+        }
+      }
+    }
+    .txlive-langselector-toggle {
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(238, 110, 115);
+    }
+    .txlive-langselector-current {
+      color: rgba(0, 0, 0, 0.87);
+    }
+    .txlive-langselector-marker {
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-bottom-color: rgba(0, 0, 0, 0.61);
+    }
+  }
+  .txlive-langselector {
+    position: fixed;
+    z-index: 999999;
+    min-width: 120px;
+    line-height: 32px;
+    background-color: rgba(0, 0, 0, 0.75);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-family: inherit;
+    * {
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      padding-top: 0px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      border-top-width: 0px;
+      border-right-width: 0px;
+      border-bottom-width: 0px;
+      border-left-width: 0px;
+      border-top-style: initial;
+      border-right-style: initial;
+      border-bottom-style: initial;
+      border-left-style: initial;
+      border-top-color: initial;
+      border-right-color: initial;
+      border-bottom-color: initial;
+      border-left-color: initial;
+      border-image-source: initial;
+      border-image-slice: initial;
+      border-image-width: initial;
+      border-image-outset: initial;
+      border-image-repeat: initial;
+      font-style: inherit;
+      font-variant-ligatures: inherit;
+      font-variant-caps: inherit;
+      font-variant-numeric: inherit;
+      font-weight: inherit;
+      font-stretch: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      font-family: inherit;
+      vertical-align: baseline;
+      box-sizing: border-box;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0px;
+      opacity: 1;
+    }
+    .txlive-langselector-toggle {
+      overflow-x: hidden;
+      overflow-y: hidden;
+      display: block;
+      padding-top: 2px;
+      padding-right: 16px;
+      padding-bottom: 2px;
+      padding-left: 16px;
+      width: 100%;
+      height: 36px;
+      cursor: pointer;
+    }
+    .txlive-langselector-current {
+      float: left;
+      padding-top: 0px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      max-width: 200px;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .txlive-langselector-marker {
+      float: right;
+      display: block;
+      position: relative;
+      width: 0px;
+      height: 0px;
+      margin-left: 8px;
+      margin-top: 13px;
+      border-right-width: 4px;
+      border-right-style: dashed;
+      border-right-color: transparent;
+      border-left-width: 4px;
+      border-left-style: dashed;
+      border-left-color: transparent;
+    }
+  }
+  .txlive-langselector.txlive-langselector-bottomright {
+    top: auto;
+    left: auto;
+    right: 0px;
+    bottom: 0px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    .txlive-langselector-toggle {
+      overflow-x: hidden;
+      overflow-y: hidden;
+      display: block;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(0, 111, 159);
+      padding-top: 2px;
+      padding-right: 16px;
+      padding-bottom: 2px;
+      padding-left: 16px;
+      height: 36px;
+      line-height: 32px;
+      cursor: pointer;
+    }
+  }
+  ul {
+    &:not(.brow2ser-default) {
+      padding-left: 0px;
+      list-style-type: none;
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+  .txlive-langselector-list {
+    position: absolute;
+    width: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    display: none;
+    background-color: rgb(234, 241, 247);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px;
+    color: rgb(102, 102, 102);
+    list-style-type: none;
+    >li {
+      padding-top: 0px;
+      padding-right: 16px;
+      padding-bottom: 0px;
+      padding-left: 16px;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      &:hover {
+        background-color: rgb(176, 185, 193);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+      }
+    }
+  }
+  .txlive-langselector-bottomright {
+    >.txlive-langselector-list {
+      top: auto;
+      left: auto;
+      right: 0px;
+      bottom: 40px;
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: rgb(244, 247, 249);
+      border-top-left-radius: 2px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 2px;
+    }
+    .txlive-langselector-marker {
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(255, 255, 255);
+    }
+  }
+  .txlive-langselector-topright {
+    >.txlive-langselector-list {
+      border-top-left-radius: 2px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 2px;
+    }
+  }
+  .txlive-langselector-bottomleft {
+    .txlive-langselector-marker {
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(255, 255, 255);
+    }
+  }
+
+
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+
+
+
+
+
+
+
+
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  .row{
+    bordoer:solid red;
+    margin-left:5%;
+    margin-top:5%;
+    border-radius:60%;
+  }
+
+  .column {
+    bordoer:solid red;
+    border-radius:50%;
+
+    float: left;
+    width: 8.3%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+
+  @media screen and (max-width: 950px) {
+    .column {
+      width: 32%;
+      display: block;
+    }
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .title {
+    color: grey;
+  }
+
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .button:hover {
+    background-color: #555;
+  }
+
+
+
+
+
+
+
+
+
+
+  div.transbox {
+    margin: 20px;
+    background-color: #009F;
+    border: 1px solid black;
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+  }
+
+  div.transbox p {
+    margin: 3%;
+    font-weight: bold;
+    color: #000000;
+  }
+
+
+
+  #img{
+    max-width:100% !important;
+    min-width:100% !important;
+    border:solid black;
+    height:auto;
+    width:100%;
+    display:block;
+  }
+
+
+  #show{
+    max-width:150% !important;
+    min-width:90% !important;
+
+    height:auto;
+    width:100%;
+    display:block;
+  }
+</style>
+</head>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+
+var config = {
+  apiKey: "AIzaSyDPXdnGPzLiYSWP052wn-FLALO1QeJQsn8",
+  authDomain: "spotdoit14812.firebaseapp.com",
+  databaseURL: "https://spotdoit14812.firebaseio.com",
+  projectId: "spotdoit14812",
+  storageBucket: "spotdoit14812.appspot.com",
+  messagingSenderId: "226675650881"
+};
+firebase.initializeApp(config);
+
+
+$(document).ready(function(){
+  //  document.body.style.visibility="visible";
+
+
+  $("#card").hide("fast");
+  $("#general_science_d").hide("fast");
+  $("#dashboard").hide("fast");
+  $("#downloads").hide("fast");
+  $("#maths_d").hide("fast");
+  $("#down_show").hide("fast");
+
+  $("#maths_tricks_d").hide("fast");
+
+  $("#vitamins_d").hide("fast");
+  $("#favourite").hide("fast");
+  $("#fav_mcq").hide("fast");
+  $("#fav_play").hide("fast");
+
+  $("#footer").hide("fast");
+  $("#hindi_level").hide("fast");
+  $("#loader").show();
+  $("loader").css("z-index","100000");
+  $("#body").css("opacity","0.4");
+
+  $("#body").css("pointer-events","none");
+  firebase.auth().onAuthStateChanged(function(user) {
+if(user){
+    var user = firebase.auth().currentUser;
+    var str=user.email;
+    var d=str.replace(/[^a-zA-Z0-9]/g, "");
+$("#user_e").html(str);
+}
+})
+
+
+  if(localStorage.getItem("hindi_data")==null){
+    $.get("https://spotdoit14812.firebaseio.com/hindi.json", function(obj) {
+      $("#body").css("opacity","1")
+      $("#body").css("pointer-events","");
+
+      hindi_data=JSON.stringify(obj);
+      $("#hindi_data").html(hindi_data);
+      hindi_data=JSON.parse($("#hindi_data").text());
+      localStorage.setItem('hindi_data', JSON.stringify(obj));
+
+      $("#loader").hide()
+    })
+  }
+  else{
+
+    hindi_data= JSON.parse(localStorage.getItem('hindi_data'));
+
+    $("#loader").hide()
+    $("#body").css("opacity","1")
+    $("#body").css("pointer-events","");
+  }
+
+})
+
+function dashboard(){
+
+
+  var scriptTag = document.createElement('script');
+  scriptTag.setAttribute('src','js/hindi.js');
+
+  document.head.appendChild(scriptTag);
+
+
+  $("#main").fadeOut("fast");
+  $("#mix").fadeOut("fast");
+  $("#practice").fadeOut("fast");
+  $("#favourite").fadeOut("fast");
+  $("#downloads").fadeOut("fast");
+  $("#dashboard").fadeIn("fast");
+
+
+}
+
+
+
+var th;
+var loc;
+// Initialize Firebase
+
+
+var topic;
+var main_topic;
+var db;
+var head;
+
+loc=location.hash;
+
+var tablet=1;
+function tab(q){
+
+  if(q===1){
+tablet=1;
+    $("#favourite").fadeOut(1);
+    $("#mix").fadeOut(1);
+    $("#downloads").fadeOut(1);
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+    $("#practice").delay(0).fadeIn(0);
+    location.hash="home";
+
+  }
+  if(q===2){
+    $("#practice").fadeOut(1);
+    $("#mix").fadeOut(1);
+    $("#downloads").fadeOut(1);
+    $("#favourite").delay(0).fadeIn(0);
+location.hash="favourite";
+tablet=2;
+  }
+  if(q===3){
+    $("#favourite").fadeOut(1);
+    $("#practice").fadeOut(1);
+    $("#downloads").delay(0).fadeIn(0);
+location.hash="downloads";
+tablet=3;
+  }
+
+}
+
+
+function goBack(){
+
+  $('#nav').html("");//+ heading;
+
+  loc=location.hash;
+  console.log(loc);
+  if(loc=="#aptitude" ||loc=="#reason" ||loc=="#gk" ||loc=="#eng"  ){
+
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+    $("#hindi_level").fadeOut("fast");
+    $("#MyDiv_hindi").empty();
+    $("#local").empty();
+    $("#loader").hide("fast");
+    $("#main").fadeIn("fast");
+location.hash="#home";
+  }
+  else if(loc=="#level_page"){
+
+    $("#hindi_level").fadeOut("fast");
+    $("#main").fadeIn("fast");
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+    $("#MyDiv_hindi").empty();
+    location.hash="#home"
+    $("#local").empty();
+
+  }
+
+  else if(loc=="#mcq"){
+    $("#mcq").fadeOut("fast");
+    location.hash="#level_page"
+    $("#hindi_level").fadeIn("fast");
+  }
+  else if(location.hash=="#dashboard_"){
+    $("#dashboard").fadeOut("fast");
+
+if(tablet===1){
+  $("#main").fadeIn("fast");
+  $("#practice").fadeIn("fast");
+  tab(1);
+}
+else if(tablet===2){
+  $("#main").fadeIn("fast");
+  tab(2);
+}
+else if(tablet===3){
+  $("#main").fadeIn("fast");
+  tab(3);
+}
+
+
+
+
+
+
+
+  }
+
+  else if(location.hash=="#fav"){
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+    $("#fav_mcq").fadeOut("fast");
+    $("#favourite").fadeIn("fast");
+    $("#main").fadeIn("fast");
+    location.hash="#home";
+
+  }
+  else if(location.hash=="#maths_d_"||location.hash=="#vitamins_d"||location.hash=="#maths_tricks_d"){
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+    $("#maths_d").fadeOut();
+    $("#vitamins_d").fadeOut();
+    $("#maths_tricks_d").fadeOut();
+
+
+    $("#main").fadeIn();
+    $("#downloads").fadeIn();
+    location.hash="#home";
+
+  }
+  else if(location.hash=="#maths_e"){
+    $("#down_show").fadeOut();
+    $("#maths_d").fadeIn();
+    $("body").css("background","white");
+    location.hash="maths_d_";
+
+  }
+
+  else if(location.hash=="#vitamin_e"){
+    $("#down_show").fadeOut();
+    $("#vitamins_d").fadeIn();
+    $("body").css("background","white");
+    location.hash="vitamins_d";
+  }
+
+  else if(location.hash=="#maths_tricks_e"){
+    $("#down_show").fadeOut();
+    $("#maths_tricks_d").fadeIn();
+    $("body").css("background","white");
+
+    location.hash="maths_tricks_d";
+
+  }
+}
+
+
+function run(r){
+  $("#hindi_level").fadeOut("");
+  $("#mcq").show("fast");
+
+  $("#check1").css('background-color', '');
+  $("#check1").css('border', '');
+
+  $("#check2").css('background-color', '');
+  $("#check2").css('border', '');
+
+  $("#check3").css('background-color', '');
+  $("#check3").css('border', '');
+
+  $("#check4").css('background-color', '');
+  $("#check4").css('border', '');
+
+  $("#check1").attr("onclick","check(1)")
+  $("#check2").attr("onclick","check(2)")
+  $("#check3").attr("onclick","check(3)")
+  $("#check4").attr("onclick","check(4)")
+
+  $("#level_no").empty();
+
+  location.hash="#mcq";
+  var scriptTag = document.createElement('script');
+  scriptTag.setAttribute('src','js/hindi_question.js');
+  document.head.appendChild(scriptTag)
+
+
+  $('#level_no').append('<span   >'+r+'</span>');
+
+}
+
+$(document).ready(function(){
+
+
+
+  document.addEventListener("backbutton", onBackKeyDown, false);
+  function onBackKeyDown() {
+             if(locaion.hash=="#home"){
+    document.getElementById('exit_btn').click();
+  }else{
+    goBack();
+  }
+
+
+
+}
+
+
+
+
+/// main function startas here
+
+});
+
+
+function m_topic(x){
+  if(x===1){
+    //alert("aptirude");
+    main_topic="reasoning";
+    db=0;
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+  else if(x==2){
+    //alert("reasoning");
+    main_topic="history";
+    db=1;
+
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+  else if(x==3){
+    //  alert("gk");
+    main_topic="indian_gk";
+    db=2;
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+  else if(x==4){
+    //alert("english");
+    main_topic="world_gk";
+    db=3;
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+  else if(x==5){
+    //alert("english");
+    main_topic="up_gk";
+    db=4;
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+  else if(x==6){
+    //alert("english");
+    main_topic="sports_gk";
+    db=5;
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+  else if(x===7){
+    main_topic="aptitude";
+    db=6;
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+  else if(x===8){
+    //alert("english");
+    main_topic="railway";
+    db=7;
+    $('#local').append('<span  id="main_topic_name"  disabled>'+main_topic+'</span>');
+    $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+$(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  if (scroll >= 64) {
+    $(".navbar-lower").addClass("navbar-fixed");
+  }
+  else {
+    $(".navbar-lower").removeClass("navbar-fixed");
+  }
+});
+
+
+// FADE IN SMALL LOGO AND FAB ON SCROLL
+$(window).scroll(function() {
+  var scrollPosition = $(this).scrollTop();
+  var $fadeInLogo = $('.fadeInLogo');
+  var $grow2InFab = $('.halfway-fab');
+  if (scrollPosition > 128) {
+    // Fade in logo & bring in FAB
+    $fadeInLogo.fadeIn(200);
+    $grow2InFab.removeClass("scale-out");
+  } else {
+    // Fade out logo & remove FAB
+    $fadeInLogo.fadeOut(200);
+    $grow2InFab.addClass("scale-out");
+  }
+});
+
+
+// MODAL
+$(document).ready(function(){
+  $('.modal').modal();
+});
+
+// DROPDOWNS
+$(document).ready(function(){
+  $(".dropdown-button").dropdown(
+    {
+      belowOrigin: true
+    }
+  );
+});
+
+//TABS
+$(document).ready(function(){
+  $('ul.tabs').tabs();
+});
+
+//SCROLLSPY
+$(document).ready(function(){
+  $('.scrollspy').scrollSpy();
+});
+
+// SIDEBAR
+$(document).ready(function(){
+  $('.button-collapse').sideNav({
+    menuWidth: 300, // Default is 300
+    edge: 'left', // Choose the horizontal origin
+    closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    draggable: true // Choose whether you can drag to open on touch screens
+  }
+);
+});
+
+
+loc=location.hash;
+
+function change(q){
+
+
+  //  $('#local').append('<span  id="level_no"  disabled>'+r+'</span>');
+
+  $("#MyDiv_hindi").empty();
+  var scriptTag = document.createElement('script');
+  scriptTag.setAttribute('src','js/hindi_level.js');
+  document.head.appendChild(scriptTag)
+  $("body").css("background","white");
+  $("#main").fadeOut();
+  $("#hindi_level").fadeIn();
+
+}
+
+
+var ans;
+
+function favourite__(e){
+  //alert(e);
+  $("body").css("background","white");
+  $("#fav_show").empty();
+  $("#fav_play").hide();
+
+  $("#favourite").fadeOut("fast");
+  $("#main").fadeOut("fast");
+  $("#fav_mcq").fadeIn("fast")
+  var fav;
+  if(e===1){
+    fav="reasoning";
+  }
+  else if(e===2){
+    fav="history";
+  }
+  else if(e===3){
+    fav="india_gk";
+  }
+
+  else if(e===4){
+    fav="world_gk";
+  }
+
+  else if(e===5){
+    fav="up_gk";
+  }
+  else if(e===6){
+    fav="sports_gk";
+  }
+  else if(e===7){
+    fav="aptitude";
+  }
+  else if(e===8){
+    fav="railway";
+  }
+
+  $(".fav_head").html(fav);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    var user = firebase.auth().currentUser;
+    var str=user.email;
+    var d=str.replace(/[^a-zA-Z0-9]/g, "");
+
+    $.get("https://spotdoit14812.firebaseio.com/favourite/hindi/"+d+"/"+fav+".json", function(users) {
+
+      if(users){
+        for(var u=0;u<users.length;u++){
+          var append= '<div class="container" style="border solid"><div class=""><div id="question_fav'+u+'">what is the capital of india?</div></div><div class="" id="" onclick="" ><b><p id="ans_fav'+u+'" > Delhi</p></b></div><p style="border:solid 2px"></p></div>';
+
+          $("#fav_show").append(append);
+          //console.log(users);
+          console.log(users[u]);
+          $("#question_fav"+u).html(u+1+") "+users[u].ques);
+          $("#ans_fav"+u).html("Ans. "+users[u].ans);
+          ans=users[u].ans;
+          $("#ans_fav"+u).css("font-decoration", "bold");
+
+        }
+      }
+      else {
+
+        $("#fav_show").append('<div style="margin-top:180px;margin-left:50px;font-size:30px;color:gray">No Favourite Question</div>');
+      }
+    })
+  })
+}
+
+
+var data;
+var length_g;
+function fav_play(){
+
+  $("#main").hide("fast");
+  $("#favourite").hide("fast");
+  $("#fav_play").show("fast");
+$("body").css("background","white");
+  firebase.auth().onAuthStateChanged(function(user) {
+    var user = firebase.auth().currentUser;
+    var str=user.email;
+    var d=str.replace(/[^a-zA-Z0-9]/g, "");
+    console.log(d);
+
+
+    $.get("https://spotdoit14812.firebaseio.com/favourite/hindi/"+d+".json", function(fullusers) {
+      data=fullusers;
+      dummy()
+    })
+  })
+}
+
+function dummy(){
+
+
+  var random=Math.floor(Math.random() * 7)+1;
+  var topic_=["","aptitude","reasoning","up_gk","world_gk","railway","history","sports_gk"];
+  var fav=topic_[random]  //Math.floor(Math.random() * 3)+1
+  console.log(random)
+  if
+  (data[fav]){
+    var length_g;
+    length_g=data[fav].length;
+    //  console.log(length_g);
+    var random2=Math.floor(Math.random() * length_g-1)+1;
+
+
+    $("#fav_question").html(data[fav][random2].ques)
+
+    $("#fav_1").html("A "+data[fav][random2].obt1);
+    $("#fav_2").html("B "+data[fav][random2].obt2);
+    $("#fav_3").html("C "+data[fav][random2].obt3);
+    $("#fav_4").html("D "+data[fav][random2].obt4);
+    ans=data[fav][random2].ans;
+
+  }
+  else{
+    dummy();
+  }
+
+
+}
+
+
+function next_fav(){
+
+  $("#fav1").css('background-color', '');
+  $("#fav1").css('border', '');
+
+  $("#fav2").css('background-color', '');
+  $("#fav2").css('border', '');
+
+  $("#fav3").css('background-color', '');
+  $("#fav3").css('border', '');
+
+  $("#fav4").css('background-color', '');
+  $("#fav4").css('border', '');
+
+  $("#fav1").attr("onclick","fav_check(1)")
+  $("#fav2").attr("onclick","fav_check(2)")
+  $("#fav3").attr("onclick","fav_check(3)")
+  $("#fav4").attr("onclick","fav_check(4)")
+
+
+
+
+  dummy();
+}
+
+
+
+
+
+var cor;
+var chk_1;
+var chk_2;
+var chk_3;
+var chk_4;
+var correct=0;
+var wrong=0;
+var move;
+var level_point=0;
+
+function fav_check(q){
+  move=move+5;
+  console.log(ans)
+  chk_1 = $('#fav_1').text();
+  chk_2 = $('#fav_2').text();
+  chk_3 = $('#fav_3').text();
+  chk_4 = $('#fav_4').text();
+
+  if(q===1){
+
+    id="#fav1";
+    cor= $('#fav_1').text();
+    console.log(cor);
+  }
+  else if(q===2){
+    id="#fav2";
+    cor= $('#fav_2').text();
+
+  }
+  else if(q===3){
+    id="#fav3";
+    cor = $('#fav_3').text();
+
+  }
+  else if(q===4){
+    id="#fav4";
+    cor = $('#fav_4').text();
+
+  }
+
+  console.log(id);
+  if("A "+ans==cor ||"D "+ans==cor||"C "+ans==cor||"B "+ans==cor){
+    level_point=level_point+3;
+    correct=correct+1;
+    $(id).css('background-color', '#00ff00');
+    $(id).css('border', 'solid green');
+    $(id).attr('onclick', 'repeat()');
+
+  }
+  else{
+    $(id).css('background-color', "#e82e2e");
+    level_point=level_point-1;
+    $(id).css('border', 'solid red');
+    //navigator.vibrate(50);
+    $(id).attr('onclick', 'repeat()');
+    wrong=wrong+1;
+  }
+
+  console.log(level_point);
+  console.log(ans);
+  console.log(chk_1);
+
+  if ("A "+ans == chk_1) {
+
+    $("#fav1").css('background-color', '#00ff00');
+    $("#fav1").css('border', 'solid green');
+    $("#fav1").attr('onclick', 'repeat()');
+  }
+  else {
+    $("#fav1").attr('onclick', 'repeat()');
+  }
+
+
+  if ("B "+ans == chk_2) {
+    $("#fav2").css('background-color', '#00ff00');
+    $("#fav2").css('border', 'solid green');
+    $("#fav2").attr('onclick', 'repeat()');
+  } else {
+    $("#fav2").attr('onclick', 'repeat()');
+
+  }
+
+
+  if ("C "+ans == chk_3) {
+    $("#fav3").css('background-color', '#00ff00');
+    $("#fav3").css('border', 'solid green');
+    console.log("level_point= "+level_point);
+    //  $("#th_3").attr('class', 'btn btn-success');
+    $("#fav3").attr('onclick', 'repeat()');
+  }
+
+  else {
+    $("#fav3").attr('onclick', 'repeat()');
+
+  }
+
+
+
+  if ("D "+ans == chk_4) {
+    //    alert("righht");
+    $("#fav4").css('background-color', '#00ff00');
+    $("#fav4").css('border', 'solid green');
+    $("#th_4").attr('class', 'btn btn-success');
+    $("#fav4").attr('onclick', 'repeat()');
+  }
+
+  else {
+    $("#fav4").attr('onclick', 'repeat()');
+
+  }
+  $("#fav_score").html(level_point);
+  $("#fav_correct").html(correct);
+  $("#fav_wrong").html(wrong);
+
+
+
+}
+
+
+
+function change_d(x){
+  $("body").css("background","white");
+  $("#downloads").fadeOut("fast");
+  $("#main").fadeOut("fast");
+
+  if(x===1){
+    $("#vitamins_d").fadeIn(1);
+
+
+  }
+  else if(x===2){
+    $("#maths_d").fadeIn(1);
+  }
+  else if(x===3){
+    $("#maths_tricks_d").fadeIn(1);
+  }
+  else if(x===4){
+    $("#maths_d").fadeIn(1);
+  }
+  else if(x===5){
+    $("#maths_d").fadeIn(1);
+  }
+
+  else if(x===6){
+    $("#maths_d").fadeIn(1);
+  }
+  else if(x===7){
+    $("#maths_d").fadeIn(1);
+  }
+  else if(x===8){
+    $("#maths_d").fadeIn(1);
+  }
+  else if(x===9){
+    $("#maths_d").fadeIn(1);
+  }
+
+
+
+
+}
+
+var storage = firebase.storage();
+
+
+function maths_topic(z){
+  var topic;
+  var iota;
+  $("#show").empty();
+  $("#head").html("Maths");
+  var num=0;
+  if(z==1){
+    num=19;
+    iota=4;
+    topic="numbers";
+  }
+  else if(z==2){
+    num=37;
+    topic="simplification";
+    iota=20;
+  }
+  else if(z==3){
+    num=53;
+    topic="percentage";
+    iota=38
+  }
+  else if(z==4){
+    num=63;
+    topic="simple_and_compound_intreast";
+    iota=54;
+  }
+  else if(z==5){
+    num=75;
+    topic="profit_and_loss";
+    iota=64;
+  }
+  else if(z==6){
+    num=83;
+    topic="average";
+    iota=76;
+  }
+
+  else if(z==7){
+    num=93;
+    topic="ratio_and_proportion";
+    iota=84;
+  }
+  else if(z==8){
+    num=101;
+    topic="work_time";
+    iota=94;
+  }
+  else if(z==9){
+    num=109;
+    topic="time_speed_and_distance";
+    iota=102;
+  }
+  else if(z==10){
+    num=119;
+    topic="area_and_volume";
+    iota=110;
+  }else if(z==11){
+    num=127;
+    topic="number_series";
+    iota=120;
+  }
+  else if(z==12){
+    num=137;
+    topic="permutation_combination_probability";
+    iota=128;
+  }
+  console.log(topic);
+  for (var i = iota; i <=num; i++)
+  (function(i) {
+    var starsRef = storage.ref("hindi/"+"maths/"+topic+"/"+"maths "+"["+i+"]"+".jpg");
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img "img"+'+i+'" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+      }).catch(function(error) {
+        alert("error_url");
+      })
+
+
+    }, 200);
+  })(i);
+
+
+  $("body").css("background","gray");
+  $("#maths_d").fadeOut("fast");
+  $("#down_show").fadeIn("fast");
+}
+
+
+function vitamins_topic(z){
+
+  var topic;
+  var iota;
+  $("#show").empty();
+  $("#head").html("Vitamins");
+  var num=0;
+
+  if(z===1){
+    num=11;
+    iota=1;
+    topic="part_1";
+  }
+  else if(z===2){
+    num=20;
+    topic="part_2";
+    iota=12;
+  }
+  else if(z===3){
+    num=25;
+    topic="part_3";
+    iota=21;
+  }
+  console.log(topic);
+  for (var i = iota; i <=num; i++)
+  (function(i) {
+    var starsRef = storage.ref("hindi/"+"vitamins/"+topic+"/"+"vitamin "+"["+i+"]"+".jpg");
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img "img"+'+i+'" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+      }).catch(function(error) {
+        alert("error_url");
+      })
+
+
+    }, 200);
+  })(i);
+
+
+  $("body").css("background","gray");
+  $("#vitamins_d").fadeOut("fast");
+  $("#down_show").fadeIn("fast");
+}
+
+
+
+
+function maths_tricks_topic(z){
+
+  var topic;
+  var iota;
+  $("#show").empty();
+  $("#head").html("Maths-Tricks");
+
+  var num=0;
+
+  if(z===1){
+    num=7;
+    iota=3;
+    topic="part_1";
+  }
+  else if(z===2){
+    num=13;
+    topic="part_2";
+    iota=8;
+  }
+  else if(z===3){
+    num=19;
+    topic="part_3";
+    iota=14;
+  }
+
+  else if(z===3){
+    num=25;
+    topic="part_3";
+    iota=20;
+  }
+  console.log(topic);
+  for (var i = iota; i <=num; i++)
+  (function(i) {
+    var starsRef = storage.ref("hindi/"+"maths_tricks/"+topic+"/"+"maths_tricks "+"["+i+"]"+".jpg");
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img "img"+'+i+'" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+      }).catch(function(error) {
+        alert("error_url");
+      })
+
+
+    }, 200);
+  })(i);
+
+
+  $("body").css("background","gray");
+  $("#maths_tricks_d").fadeOut("fast");
+  $("#down_show").fadeIn("fast");
+}
+
+
+
+
+
+
+
+function zoomin(){
+  var myImg = document.getElementById("show");
+  var currWidth = myImg.clientWidth;
+  if(currWidth == 3500) return false;
+  else{
+    myImg.style.width = (currWidth + 100) + "px";
+  }
+}
+function zoomout(){
+  var myImg = document.getElementById("show");
+  var currWidth = myImg.clientWidth;
+  if(currWidth == 1500) return false;
+  else{
+    myImg.style.width = (currWidth - 100) + "px";
+  }
+}
+
+
+
+function onLoad() {
+  document.addEventListener("deviceready", onDeviceReady, false);
+}
+
+// device APIs are available
+//
+function onDeviceReady() {
+
+}
+
+document.addEventListener("backbutton", function(e){
+$("#exit_btn").click();
+});
+
+
+
+
+function jump(){
+
+  var english={
+    "aptitude" : [ [ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ] ],
+
+    "reasoning": [[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ]   ],
+
+    "gk" : [ [ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ] ],
+
+    "english": [[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0" ,"0"],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ],[ "0","0" ]   ]
+
+  }
+
+
+  $("#loader").show()
+
+  firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+      var user = firebase.auth().currentUser;
+      var str=user.email;
+      var e=str.replace(/[^a-zA-Z0-9]/g, "");
+
+      //$("#register").html("Pease wait ..");
+      $.get("https://spotdoit14812.firebaseio.com/users/eng/"+e+".json", function(post) {
+      //  console.log(post);
+        if(post){
+        if(post==null){
+          var ref = firebase.database().ref("users/"+"eng/"+e);
+          ref.update(english);   // Creates a new ref with a new "push key"
+          //window.location="hindi.html"
+          $("#loader").hide();
+          window.location="english.html"
+
+        }else{
+          $("#loader").hide();
+          window.location="english.html"
+
+        }
+      }else{
+        window.location="english.html"
+
+      }
+      })
+    }
+  })
+
+}
+
+
+
+
+</script>
+
+<body  style="background:linear-gradient(to right, #B06AB3, #4568DC);font-family:Raleway" >
+<div style="display:none" id="level_no"></div>
+
+  <div id="down_show" >
+
+    <div style="max-width:">
+      <p  style="margin-top:;color:white;position:;" id="nav_p"  >
+        <span onclick="goBack()" class="glyphicon glyphicon-arrow-left pull-left" style="margin-top:5px"></span>
+        <span class="glyphicon glyphicon-zoom-in pull-right" style="margin-right:15px;margin-top:3px" onclick="zoomin()"	></span>
+        <span class="glyphicon glyphicon-zoom-out pull-right" style="margin-right:15px;margin-top:5px" onclick="zoomout()"></span>
+        <span id="head" style="font-size:25px;z-index:3;margin-left:50px;margin-top:0"></span>
+        <br>
+      </p>
+    </div>
+    <br>
+
+    <div class="" id="show" style="margin-top:60px" style="max-width:100%">
+    </div>
+
+
+
+  </div>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" style="margin-top:150px;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align:center;">Do You Want To LogOut</h4>
+        </div>
+        <div class="modal-footer">
+          <center>
+            <button type="button" class="btn btn-primary"style="width:50px;" onclick="logout()" >Yes</button>
+            <button type="button" class="btn btn-danger" style="width:50px;" data-dismiss="modal">No</button>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="body"style="font-family: 'Raleway', Helvetica, Arial, sans-serif">
+
+    <div id="main">
+      <div class="navbar-lower">
+        <nav class="z-depth-0 nav-extended">
+          <div class="nav-wrapper">
+            <div class="row2">
+              <div class="col s12">
+
+                <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large" ><i style="margin-top:20px" class="material-icons">menu</i></a>
+
+                <a class="fadeInLogo brand-logo animated slideInUp">
+                  <!-- M -->
+                  <!-- <img src="https://materializecss.com/res/materialize.svg" alt="" style="margin-top:12px;" height="40px"/> -->
+                  <i class="large material-icons">important_devices</i>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="#modal1">Home</a></li>
+                  <li class="active"><a href="#modal1">About</a></li>
+                  <li><a href="#modal1">Team</a></li>
+                  <li><a href="#modal1">Blog</a></li>
+                  <li><a href="#modal1">Resources</a></li>
+                  <li><a href="#modal1">Careers</a></li>
+                  <li><a href="#!" class="dropdown-button" data-activates="dropdown1">Contact<i class="material-icons right">arrow2_drop_down</i></a></li>
+                </ul>
+              </div>
+              <div class="nav-content "style="margin-top:-25px">
+
+                <div class="col s12 nav-content blue">
+
+                  <ul>
+                    <li><div style="margin-top:30px;font-size:30px;margin-left:30px;font-family: 'Raleway', Helvetica, Arial, sans-serif;text-align:center;align:center" class="col s12 nav-header blue">Railway</div></li>
+                  </ul>
+
+                  <ul class="tabs tabs-transparent ">
+                    <li class="tab"><a href="#tab1" style="font-decoration:underline" class="active" onclick="tab(1)">Practice</a></li>
+                    <li class="tab"><a href="#tab2" onclick="tab(2)">Favourite</a></li>
+                    <li class="tab"><a href="#tab3" onclick="tab(3)">Reading</a></li>
+                  </ul>
+                  <ul class="side-nav white " id="mobile-demo">
+
+
+                    <li class="sidenav-header blue ">
+                      <div class="row2">
+                        <center>
+                          <div class="col s4">
+                            <img src="img/sports.png" width="100px" height="48px" style="margin-left:" alt="user" class="circle responsive-img valign profile-image">
+                          </div>
+                        </center>
+                          <div class="col s8">
+                            <center><a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown" style="text-align:center;font-size:20px" id="user_e">User<i class="mdi-navigation-arrow2-drop-down right"></i></a></center>
+                            <ul id="profile-dropdown" class="dropdown-content">
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="white">
+                        <ul class="collapsible collapsible-accordion">
+                          <li>
+                            <a href="#dashboard_" onclick="dashboard()" class="collapsible-header waves-effect waves-blue"><i class="material-icons" style="color:orange">dashboard</i>Dashboard <i class="material-icons right" style="margin-right:0;">arrow2_drop_down</i></a>
+                          </li>
+                        </ul>
+                      </li>
+                    </hr>
+
+                    <li class="white">
+                      <ul class="collapsible collapsible-accordion">
+                        <li>
+                          <a class="collapsible-header waves-effect waves-blue"><i class="material-icons " style="color:blue">assignment</i>Language <i class="material-icons right" style="margin-right:0;">arrow2_drop_down</i></a>
+                          <div class="collapsible-body">
+                            <ul>
+                              <li onclick="jump()"><a class="waves-effect waves-blue" href="#"><i class="material-icons">closed_caption</i>English<span class="new badge right yellow darken-3"></span></a></li>
+                            </hr>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+
+                  <li class="white">
+                    <ul class="collapsible collapsible-accordion">
+                    </ul>
+                  </li>
+                </hr>
+
+                <li class="white" ><a onClick='window.open("https://www.toprankers.com/exams/railway-group-d-syllabus/", "_system");' class="waves-effect waves-blue"><i class="material-icons" style="color:yellow">list</i>Syllabus</a></li>
+                <li class="white" id="log" href="#"  onclick="window.plugins.socialsharing.share('SpotDoit-Railway-Preparation . Free railway exam preparation app in both language engliash and hindiTo download ', null, null, 'https://firebasestorage.googleapis.com/v0/b/spotdoit14812.appspot.com/o/app-debug.apk?alt=media&token=f967041c-4031-4ece-bec2-abff6adcf35a')" ><a href="#" class="waves-effect waves-blue"><i class="material-icons" style="color:blue">share</i> Share<span class="new badge right yellow darken-3"></span></a></li>
+
+
+                <li class="white" id="log" href="#"  data-toggle="modal" data-target="#myModal"><a href="#" class="waves-effect waves-blue"><i class="glyphicon glyphicon-log-out" style="color:#45B8AC"></i> LogOut<span class="new badge right yellow darken-3"></span></a></li>
+                <li class="white" id="exit_btn" href="#"  data-toggle="modal" data-target="#exit"><a href="#" class="waves-effect waves-blue"><i class="material-icons" style="color:red">exit_to_app</i> Exit<span class="new badge right yellow darken-3"></span></a></li>
+                <hr>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </nav>
+  </div>
+
+
+  <!-- MODAL -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Just a demo</h4>
+      <p>Try resizing your window width to see the responsive features. Be sure to try scrolling down as well.</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat">Ok</a>
+    </div>
+  </div>
+
+
+
+  <div class="row "  id="practice" class="">
+    <div class="column" >
+      <div class="card">
+        <a  href="#reason" onclick="change(1); m_topic(1)" style="color:black">    <img src="img/history.png" alt="John" style="width:100%">
+          <div >
+            <h5   id="aptitude"  style="font-size:1.2em">Reasoning</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#history" onclick="change(2);m_topic(2)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">History</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="column" >
+      <div class="card">
+        <a href="#reason" onclick="change(2);m_topic(3)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">Indian Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#reason" onclick="change(2);m_topic(4)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">World Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#reason" onclick="change(2);m_topic(5)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">UP Gk</h5>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#gk"> <img  src="img/aptitude.png" onclick="change(3);m_topic(6)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.2em">Sports Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#reason"><img src="img/sports.png" onclick="change(4);m_topic(7)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.2em" >Aptitude</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#reason"><img src="img/history.png" onclick="change(5);m_topic(8)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.2em">Railway</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <img src="img/sports.png" alt="John" style="width:100%">
+        <div >
+          <h5 style="font-size:1.2em">Empty</h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<div id="hindi_level" background="white">
+
+  <div class="nav header">
+    <p  onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+      <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:10px;font-size:30px" id="head">Aptitude</h3>
+    </p>
+  </diV>
+
+  <div class="container"  id="MyDiv_hindi" style="margin-top:70px">
+  </div>
+
+</div>
+
+
+<div id="mcq">
+  <div id="">
+    <p onclick="goBack(2)" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+      <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px"></h5>
+    </p>
+
+
+    <div style="margin-top:75px">
+      <div class="container">
+        <div id="question">what is the capital of india?</div>
+      </div>
+
+
+      <div class="transbox" id="check1" onclick="check(1)" >
+
+        <p id=option_1> Delhi</p>
+      </div>
+
+
+      <div class="transbox" id="check2" onclick="check(2)">
+        <p id=option_2>India</p>
+      </div>
+
+      <div class="transbox" id="check3" onclick="check(3)">
+        <p id=option_3>Pune</p>
+      </div>
+
+      <div class="transbox" id="check4" onclick="check(4)" style="margin-bottom:60px">
+        <p id=option_4>GandhiNagar</p>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div  class="footer" >
+      <div id="next_previous">
+        <div style="width:180px;float:left;"><div id="revious" class="btn-warning" style="width:100% " onclick="previous()" value="Reset form"> Previous</div></div>
+        <div style="margin-bottom:2px;float:left">  <div  class="btn-primary" style="width:200% " onclick="favourite()" ><i class="material-icons" style="color:red">favorite</i></div></div>
+              <div style="margin-bottom:2px;">  <div id="next" class="btn-info" style="width:100% " onclick="next_hindi()" value="Reset form" href="#nav_p"> Next</div></div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+
+<div class="card" id="card" style="margin-top:60px">
+
+  <h2>You Score: <span id="starsCount" ></span> </h2>
+  <div class="stars">
+    <span class="rating" data-rating="1.5">
+      <span aria-hidden="true">
+        ★★★★★
+      </span>
+    </span>
+
+  </div>
+  <h4 id="completed" style="color:red;font-size:30px"></h4>
+  <p id="correct" style="color:green;font-size:30px"></p>
+  <p id="wrong" style="color:red;font-size:30px"></p>
+
+  <h4 id="status" style="color:blue;font-size:30px"></h4>
+  <button id="next_level" class="btn btn-primary btn-lg" onclick="next_level_hindi()"style="width:100%"> Go TO Next Level</button>
+
+
+</div>
+
+
+
+<button id="exit_btn" href="#"  data-toggle="modal" data-target="#exit" style="display:none"><span class="glyphicon">&#xe163;</span> Log out</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" style="margin-top:150px;">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align:center;">Do You Want To LogOut</h4>
+      </div>
+      <div class="modal-footer">
+        <center>
+          <button type="button" class="btn btn-primary"style="width:50px;" onclick="logout()" >Yes</button>
+          <button type="button" class="btn btn-danger" style="width:50px;" data-dismiss="modal">No</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" role="dialog" id="exit" style="margin-top:150px;">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align:center;">Do You Want To Exit</h4>
+      </div>
+      <div class="modal-footer">
+        <center>
+          <button type="button" class="btn btn-primary"style="width:50px;" onclick="exit()" >Yes</button>
+          <button type="button" class="btn btn-danger" style="width:50px;" data-dismiss="modal">No</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="hindi_data" style="display:none"></div>
+<div id="local" style="display:none">
+</div>
+<!--
+<button  class="btn btn-success container " ><span class="glyphicon glyphicon-lock pull-left" style="margin-top:0px;background-color:red;padding:10px 10px 10px 10px"></span>Level</button>
+-->
+
+
+
+
+
+</div>
+<div id="loader"></div>
+
+<div id="dashboard" style="margin-top:-30px">
+
+  <div class="nav header">
+    <p  onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+      <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:40px;font-size:30px" id="head">Dashboard</h3>
+    </p>
+  </diV>
+
+
+
+<div class="col-lg-4 col-md-4" style="margin-top:100px;" >
+  <div class="panel panel-danger" >
+    <div class="panel-heading">
+      <div class="">
+        <div class="">
+          <span class="x-icon-headings-invert icon-x-order x-icon-headings"></span>
+          <h3 class="header-white header-smaller" style="font-size:30px;"><span style="color:blue">Your Score Is :</span> <strong id="score"></strong></h3>
+
+
+
+        </div>
+        <div class="">
+
+        </div>
+      </div>
+    </div>
+
+    <div class="panel-footer" >
+      <div class="row">
+        <div class="col-lg-4 clearfix"><span class="pull-left">Overall Perfomance</span></div>
+        <div class="col-lg-4 clearfix"><span class="pull-left" id="overall_moved"> </span></div>
+        <div class="col-lg-4 clearfix">
+          <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:25px">
+            <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="80"
+            aria-valuemin="0" aria-valuemax="100" id="overall_show">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-lg-4 clearfix"><span class="pull-left">Aptitude</span></div>
+      <div class="col-lg-4 clearfix"><span class="pull-left" id="aptitude_moved"></span></div>
+      <div class="col-lg-4 clearfix">
+        <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+          <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+          aria-valuemin="0" aria-valuemax="100" id="aptitude_show">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-4 clearfix"><span class="pull-left">History</span></div>
+    <div class="col-lg-4 clearfix"><span class="pull-left" id="history_moved"> </span></div>
+    <div class="col-lg-4 clearfix">
+      <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+        <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80"
+        aria-valuemin="0" aria-valuemax="100" id="history_show">
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-lg-4 clearfix"><span class="pull-left">Indian_gk</span></div>
+      <div class="col-lg-4 clearfix"><span class="pull-left" id="indian_gk_moved"></span></div>
+      <div class="col-lg-4 clearfix">
+        <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+          <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80"
+          aria-valuemin="0" aria-valuemax="100" id="indian_gk_show">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-4 clearfix"><span class="pull-left">Railway</span></div>
+    <div class="col-lg-4 clearfix"><span class="pull-left" id="railway_moved"></span></div>
+    <div class="col-lg-4 clearfix">
+      <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+        <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+        aria-valuemin="0" aria-valuemax="100" id="railway_show">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-4 clearfix"><span class="pull-left">Reasoning</span></div>
+    <div class="col-lg-4 clearfix"><span class="pull-left" id="reasoning_moved"></span></div>
+    <div class="col-lg-4 clearfix">
+      <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+        <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+        aria-valuemin="0" aria-valuemax="100" id="reasoning_show">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-4 clearfix"><span class="pull-left">Sports_gk</span></div>
+    <div class="col-lg-4 clearfix"><span class="pull-left" id="sports_gk_moved"></span></div>
+    <div class="col-lg-4 clearfix">
+      <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+        <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+        aria-valuemin="0" aria-valuemax="100" id="sports_gk_show">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+
+
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-4 clearfix"><span class="pull-left">UP gk</span></div>
+    <div class="col-lg-4 clearfix"><span class="pull-left" id="up_gk_moved"></span></div>
+    <div class="col-lg-4 clearfix">
+      <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+        <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+        aria-valuemin="0" aria-valuemax="100" id="up_gk_show">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-4 clearfix"><span class="pull-left">World Gk</span></div>
+    <div class="col-lg-4 clearfix"><span class="pull-left" id="world_gk_moved"></span></div>
+    <div class="col-lg-4 clearfix">
+      <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+        <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+        aria-valuemin="0" aria-valuemax="100" id="world_gk_show">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+
+
+<div id="favourite">
+
+  <div class="row"  class="w3-container w3-center w3-animate-left">
+    <div class="column" >
+      <div class="card">
+        <a  href="#fav" onclick="favourite__(1)" style="color:black">    <img src="img/history.png" alt="John" style="width:100%">
+          <div >
+            <h5   id="aptitude"  style="font-size:1.2em">Reasoning</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#fav" onclick="favourite__(2)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">History</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="column" >
+      <div class="card">
+        <a href="#fav" onclick="favourite__(3)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">Indian Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#fav" onclick="favourite__(4)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">World Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#fav" onclick="favourite__(5)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.2em">UP Gk</h5>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#fav"> <img  src="img/aptitude.png" onclick="favourite__(6)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.2em">Sports Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#fav">  <img src="img/sports.png" onclick="favourite__(7)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.2em" >Aptitude</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#fav">    <img src="img/history.png" onclick="favourite__(8)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.2em">Railway</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#fav">    <img src="img/sports.png"  onclick="fav_play()" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:0.9em">Play<br> favourite</h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+<div id="fav_mcq" >
+
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:18px" class="fav_head"></h5>
+  </p>
+
+  <div id="fav_show" style="margin-top:60px">
+  </div>
+
+
+</div>
+
+<div id="fav_play" >
+
+  <div id="random">
+    <div id="board" style="float:left;width:33%">
+      <button type="button" class=" btn-info" name="button" style="padding-left:-20px"><span >Score : </span><br><span id="fav_score">0</span></button>
+    </div>
+
+    <div class="" style="float:left;width:33%">
+      <button type="button" class=" btn-success" name="button"><span>Correct : </span><br><span id="fav_correct">0</span></button>
+    </div>
+
+
+    <div class="" style="float:left;width:33%">
+      <button type="button" class=" btn-danger" name="button"><span>Wrong : </span><br><span id="fav_wrong">0</span></button>
+    </div>
+</div>
+
+    <div id="fav_mcq" >
+      <div class="container">
+        <div id="fav_question" style="font-size:20px">what is x?</div>
+      </div>
+
+
+      <div class="transbox" id="fav1" onclick="fav_check(1)" >
+
+        <p id="fav_1"> variable</p>
+      </div>
+
+
+      <div class="transbox" id="fav2" onclick="fav_check(2)">
+        <p id="fav_2">constant</p>
+      </div>
+
+      <div class="transbox" id="fav3" onclick="fav_check(3)">
+        <p id="fav_3">none</p>
+      </div>
+
+      <div class="transbox" id="fav4" onclick="fav_check(4)" style="margin-bottom:60px">
+        <p id="fav_4">all</p>
+      </div>
+
+    </div>
+
+
+    <center><p class="" style="font-size:15px;color:gray">quetions may be repeated</p></center>
+    <div  class="footer" id="footer1" >
+      <div id="next_previous">
+        <div style="width:180px;float:left;"><div id="revious" class="btn-warning" style="width:100% " onclick="goBack()" value="Reset form"> Home page</div></div>
+        <div style="margin-bottom:2px;float:left">  <div  class="btn-primary" style="width:200% " onclick="favourite()" ><i class="material-icons" style="color:red">favorite</i></div></div>
+        <div style="margin-bottom:2px;">  <div id="next" class="btn-info" style="width:100% " onclick="next_fav()" value="Reset form" href="#board"> Next</div></div>
+
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+<div id="downloads" style="height:115%">
+
+
+  <div class="row">
+
+    <div class="column" >
+      <div class="card">
+        <a  href="#vitamins_d" onclick="change_d(1)" style="color:black">    <img src="img/history.png" alt="John" style="width:100%">
+          <div >
+            <h5  style="font-size:1.1em">Vitamins</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#maths_d_" ><img src="img/sports.png" alt="John" onclick="change_d(6)" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.1em">Maths</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#maths_tricks_d"><img src="img/sports.png" alt="John" style="width:100%" onclick="change_d(3)"></a>
+        <div >
+          <h5 style="font-size:.8em">Maths Short<br> Tricks</h5>
+        </div>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+</div>
+
+
+<div id="general_science_d" class="">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:25px"></h5>
+  </p>
+
+  <div class="container" style="margin-top:80px">
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(1)" href="topic_e" >Physics</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(2)" >Chemistry</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(3)" >Biology</button></a>
+
+  </div>
+
+</div>
+
+
+
+<div id="maths_d" class="">
+
+    <div class="nav header">
+      <p  onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+        <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:px;font-size:25px" id="head">Maths</h3>
+      </p>
+    </diV>
+  <div class="container" style="margin-top:60px">
+
+    <a href="#maths_e" onclick="maths_topic(1)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(1)" href="topic_e" >Numbers</button></a>
+    <a href="#maths_e" onclick="maths_topic(2)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(2)" >Simpification</button></a>
+
+    <a href="#maths_e" onclick="maths_topic(3)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(3)" >Percentage</button></a>
+    <a href="#maths_e" onclick="maths_topic(4)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(1)" href="topic_e" >Simple And Compound Interest</button></a>
+
+    <a href="#maths_e" onclick="maths_topic(5)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(2)" >Profit And Loss</button></a>
+    <a href="#maths_e" onclick="maths_topic(6)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(2)" >Average</button></a>
+
+
+
+    <a href="#maths_e" onclick="maths_topic(7)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(3)" >Ratio And Proportion</button></a>
+    <a href="#maths_e" onclick="maths_topic(8)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(1)" href="topic_e" >Work And Time</button></a>
+
+
+    <a href="#maths_e" onclick="maths_topic(9)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(3)" >Time Speed And Distance</button></a>
+    <a href="#maths_e" onclick="maths_topic(10)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(1)" href="topic_e" >Area And Volume</button></a>
+
+
+    <a href="#maths_e"onclick="maths_topic(11)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(2)" >Number Series</button></a>
+    <a href="#maths_e" onclick="maths_topic(12)"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(3)" >Permutation Comination And Probability</button></a>
+
+  </div>
+
+</div>
+
+
+<div class="" id="vitamins_d" >
+
+    <div class="nav header">
+      <p  onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+        <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:20px;font-size:25px" id="head">Vitamins</h3>
+      </p>
+    </diV>
+
+
+  <div class="container" style="margin-top:70px">
+
+
+    <a href="#vitamin_e" onclick="vitamins_topic(1)"><button type="button" name="button" class="btn1 btn-med"  >Part-1</button></a>
+    <a href="#vitamin_e" onclick="vitamins_topic(2)"><button type="button" name="button" class="btn1 btn-med"  >Part-2</button></a>
+    <a href="#vitamin_e" onclick="vitamins_topic(3)"><button type="button" name="button" class="btn1 btn-med"  >Part-3</button></a>
+
+
+
+  </div>
+</div>
+
+
+
+<div class="" id="maths_tricks_d" >
+
+  <div class="nav header">
+    <p  onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+      <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:20px;font-size:25px" id="head">Maths Tricks</h3>
+    </p>
+  </diV>
+
+
+
+  <div class="container" style="margin-top:60px">
+    <a href="#maths_tricks_e" onclick="maths_tricks_topic(1)"><button type="button" name="button" class="btn1 btn-med"  >Part-1</button></a>
+    <a href="#maths_tricks_e" onclick="maths_tricks_topic(2)"><button type="button" name="button" class="btn1 btn-med"  >Part-2</button></a>
+    <a href="#maths_tricks_e" onclick="maths_tricks_topic(3)"><button type="button" name="button" class="btn1 btn-med"  >Part-3</button></a>
+    <a href="#maths_tricks_e" onclick="maths_tricks_topic(4)"><button type="button" name="button" class="btn1 btn-med"  >Part-3</button></a>
+  </div>
+
+</div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" src="js/css/bootstrap.min.css">
+    <script src="js/js/bootstrap.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/index.js"></script>
+    <script src="js/hindi.js"></script>
+<script src="js/hindi_level.js"></script>
+
+<script type="text/javascript" src="cordova.js"></script>
+<script src="js/ad.js"></script>
+
+
+    <title>SpotdoIt</title>
+
+ </head>
+<style media="screen">
+  body{
+    background-image:url("img/back2.jpg");
+  }
+</style>
+ <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+ <script>
+   // Initialize Firebase
+   var config = {
+     apiKey: "AIzaSyDPXdnGPzLiYSWP052wn-FLALO1QeJQsn8",
+     authDomain: "spotdoit14812.firebaseapp.com",
+     databaseURL: "https://spotdoit14812.firebaseio.com",
+     projectId: "spotdoit14812",
+     storageBucket: "spotdoit14812.appspot.com",
+     messagingSenderId: "226675650881"
+   };
+   firebase.initializeApp(config);
+ </script>
+
+    <body style="background-color:white" >
+
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <a id="home" onclick="closeNav()" > <span class="glyphicon">&#xe021;</span> Home</a>
+          <a id="user" href="#"> <span class="glyphicon">&#xe008;</span> User</a>
+          <a id="dashboard" href="progress_bar_hindi.html"> <span class="glyphicon">&#xe010;</span> Dashboard</a>
+          <a id="setting" href="#"><i class="fa fa-cog fa-spin" style="font-size:24px"></i> Setting</a>
+          <a id="help" href="#"><i style="font-size:24px" class="fa">&#xf128;</i> Help</a>
+          <a id="log" href="#" onclick="logout()"><span class="glyphicon">&#xe163;</span> Log out</a>
+          <a id="About" href="#"> About</a>
+
+        </div>
+        <p onclick="goBack()" id="nav_p"><span style=""></span>
+        </p>
+
+
+
+
+        <div  id="MyDiv_hindi">
+          <div id="loader"></div>
+          </div>
+
+          <table class="table"  id="myTable_eng">
+            <thead>
+              <tr>
+              </tr>
+            </thead>
+          </table>
+
+        </div>
+
+
+
+</body>
+
+
+
+</html>

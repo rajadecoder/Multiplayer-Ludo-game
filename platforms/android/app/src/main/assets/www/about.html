@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script  src="ad.js"></script>
+
+<script  src="cordova.js"></script>
+
+
+
+<title>About</title>
+
+
+  <style>
+body{
+  background-image: url("img/back2.jpg");
+  background-repeat: none;
+}
+
+h1{
+
+  font-size: 40px;
+  color:white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 8px 16px;
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    background-color: #95f442;
+    border: solid #95f442;
+    border-radius:10%;
+    color: ;
+}
+
+.next {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.round {
+    border-radius: 50%;
+}
+
+  </style>
+
+  <script type="text/javascript" >
+
+    document.addEventListener('deviceready', function () {
+        if(typeof Fullscreen !== 'undefined'){
+            //It's safe to use Fullscreen here
+    Fullscreen.on();
+
+        }
+    });
+
+
+  function goBack(){
+  window.history.back(-1);
+
+  }
+  </script>
+
+
+</head>
+<body style="background-color:">
+
+  <a  onclick="goBack()" class="previous">&laquo; Previous</a>
+
+
+    <div class="container">
+<center>
+        <h1 style="margin-top:20px;margin-bottom:80px"><strong>SpotDoit</strong></h1>
+        <h3 style="color:#004B8D;margin-top:-10px;"> Software company that makes you love hiring..again</h3>
+      </center>
+<center style="color:#300033;">
+  <h4 >All web Page Designing Work </h4>
+  <h4 style="margin-top:-20px;">Android Application Development </h4>
+
+</center>
+</div>
+
+    <footer style="background-color:;">
+      <center>
+        <h3 style="color:white;text-align:center;margin-top:30px;">Contact Us</h3>
+      <p style="color:white;margin-bottom:-15px;margin-top:-10px;"> Email : SpotDoit@gmail.com</p>
+<br>
+  <p style="color:white">Phone No :+917575888101, +91953732359 , +919099858434 </p>
+      <p style="color:white;">Visit Us at : <a onClick='window.open("http://www.spotdoit.in/", "_system");'  style="color: #004B8D;">
+      www.SpotDoit.in</a>.</p>
+
+      </center>
+  </footer>
+
+
+  <center>
+    <h3 style= "color:white;margin-top:30px;"> Developed By - SpotDoit Team</h3>
+  <br>  <h4 style="color:#223A5E;margin-top:-20px;"><u>Rk Prasad & Ranjit Pandit</u> </h4>
+
+  </center>
+
+
+
+
+</body>
+</html>

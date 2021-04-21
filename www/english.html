@@ -1,0 +1,3458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/materialize.min.js"></script>
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/animate.min.css">
+
+  <link rel="stylesheet" href="css/index.css" />
+  <script src="js/index.js"></script>
+
+  <script type="text/javascript" src="cordova.js"></script>
+
+  <title>SpotdoIt</title>
+
+
+  <script type="text/javascript">
+
+  </script>
+
+  <style>
+
+  /* latin-ext */
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyCMIT4ttDfCmxA.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  }
+  /* latin */
+  @font-face {
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0IT4ttDfA.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+
+  /* fallback */
+  @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v36/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+  }
+
+  /* latin */
+  @font-face {
+    font-family: 'Goudy Bookletter 1911';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Goudy Bookletter 1911'), local('GoudyBookletter1911'), url(https://fonts.gstatic.com/s/goudybookletter1911/v7/sykt-z54laciWfKv-kX8krex0jDiD2HbY6IJshzWRYEHAQ.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  }
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+
+
+
+
+
+  .card {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-flow: column;
+    text-align: center;
+  }
+
+  h1 {
+    font-family:  verdana;
+
+    font-size: 50px;
+    color:#000 ;
+    text-shadow: 2px 2px 5px red;
+  }
+
+  h2 {
+    font-family: verdana;
+    font-size: 30px;
+    color: #E74C3C;
+    text-shadow: 1px 1px 5px black;
+  }
+
+
+
+  .rating {
+    font-size: 4em;
+    background: linear-gradient(to right, #f22, #f22 20%, #000 1%, #000 99%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: rgba(0,0,0,0);
+    text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+  }
+
+  /** Page formatting, not related to this pen **/
+
+  footer {
+    padding: 15px;
+  }
+
+  footer a {
+    text-decoration:none;
+    color: #a53;
+  }
+
+  .stars {
+    background: #34495E;
+    height: 40px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    -webkit-box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+    -moz-box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+    box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+  }
+
+  .stars input {
+    position: absolute;
+    left: -999999px;
+  }
+
+  label {
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    color: transparent;
+  }
+
+  label::before {
+    content: '★';
+    color: #ffffff;
+    font-size: 30px;
+    line-height: 30px;
+    margin-right: -100%;
+  }
+
+
+  label:hover ~ label::before,
+  .stars input:checked ~ label::before {
+    color: #ffa500;
+    font-size: 35px;
+  }
+
+
+  #mySidenav{
+    width:0;
+  }
+
+
+
+
+
+
+  // OFFSET FOR LOWER NAVBAR
+  .navbar-fixed {
+    top:-64px;
+  }
+
+
+  // NAVBAR TWEAK
+  // Prevents content jump when navbar becomes fixed
+  .navbar-lower {
+    @media only screen and (max-width: 600px) {height:49px;} // SMALL
+    @media only screen and (min-width: 600px) and (max-width: 992px) {max-height:29px;} // MEDIUM
+    @media only screen and (min-width: 993px) {height:112px;} // LARGE
+  }
+
+  // ADD SHADOW TO LOWER NAVBAR
+  .navbar-lower nav {
+    // Not working. Hmmm.
+    box-shadow:
+    0 2px 2px -2px rgba(0, 0, 0, 0.14),
+    0 1px 5px -2px rgba(0, 0, 0, 0.12),
+    0 3px 1px -2px  rgba(0, 0, 0, 0.2);
+  }
+
+
+  // FIX NAVBAR TAB HEIGHT ISSUE AFTER SCROLL
+  .nav-extended {
+    @media only screen and (max-width: 600px) {max-height:48px;} // SMALL
+    @media only screen and (min-width: 600px) and (max-width: 992px) {max-height:48px;} // MEDIUM
+    @media only screen and (min-width: 993px) {max-height:112px;} // LARGE
+  }
+
+  // FIX SIDEBAR'S OVERLAY ISSUE
+  // Not working. Hmmm.
+  .side-nav {
+    z-index:999;
+  }
+  #sidenav-overlay {
+    z-index:800;
+  }
+  .navbar-fixed {
+    z-index:900;
+  }
+
+  nav .fadeInLogo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    float: left;
+    display: none;
+  }
+
+  nav .input-field input[type=search] {
+    width:0px;
+  }
+  nav .input-field input[type=search]:focus {
+    width:320px;
+    color: transparent;                     // Remove blinking cursor 1/2
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0.87); // Remove blinking cursor 2/2
+  }
+  .row2-noclear:after {
+    clear:none!important;
+  }
+
+  ul#dropdown1.dropdown-content {width:400px!important;}
+  ul#dropdown1.dropdown-content:active {width:400px!important;}
+
+  #photo-bg {
+    background-image: url(https://burst.shopifycdn.com/photos/country-cottage-sunset_925x.jpg);
+    background-size: cover;
+
+  }
+
+  .side-nav li>a {
+    padding: 0 16px;
+  }
+  .side-nav .divider {
+    margin:0;
+    height:8px;
+    border-bottom:1px solid #e0e0e0;
+    background-color: transparent;
+  }
+
+  .sidenav-header {
+    background: url("../images/user-bg.jpg") no-repeat center center;
+    background-size: cover;
+    margin-bottom: 0px;
+    padding: 15px 0 0 15px;
+    .row2 {
+      margin-bottom: 0;
+    }
+  }
+  .sidenav-footer {
+    margin-bottom: 0px;
+    padding: 0;
+    .row2 {
+      margin-bottom: 0;
+      .social-icons {
+        a {
+          opacity: 0.5;
+          padding: 0;
+          text-align:center;
+          &:hover {
+            background-color:inherit;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+
+
+
+
+  .nav-transparent {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .nav-breadcrumbs-dark {
+    .breadcrumb {
+      color: rgba(0,0,0,0.5);
+    }
+    .breadcrumb:last-child {
+      color: rgba(0,0,0,1);
+    }
+    .breadcrumb:before {
+      color: rgba(0,0,0,0.2);
+    }
+  }
+
+  #tx-live-lang-container {
+    background-color: rgb(252, 252, 252);
+    z-index: 999;
+    #tx-live-lang-picker {
+      background-color: rgb(252, 252, 252);
+      li {
+        color: rgba(0, 0, 0, 0.87);
+        &:hover {
+          color: inherit;
+          background-color: rgb(253, 234, 235);
+        }
+      }
+    }
+    .txlive-langselector-toggle {
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(238, 110, 115);
+    }
+    .txlive-langselector-current {
+      color: rgba(0, 0, 0, 0.87);
+    }
+    .txlive-langselector-marker {
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-bottom-color: rgba(0, 0, 0, 0.61);
+    }
+  }
+  .txlive-langselector {
+    position: fixed;
+    z-index: 999999;
+    min-width: 120px;
+    line-height: 32px;
+    background-color: rgba(0, 0, 0, 0.75);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-family: inherit;
+    * {
+      margin-top: 0px;
+      margin-right: 0px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      padding-top: 0px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      border-top-width: 0px;
+      border-right-width: 0px;
+      border-bottom-width: 0px;
+      border-left-width: 0px;
+      border-top-style: initial;
+      border-right-style: initial;
+      border-bottom-style: initial;
+      border-left-style: initial;
+      border-top-color: initial;
+      border-right-color: initial;
+      border-bottom-color: initial;
+      border-left-color: initial;
+      border-image-source: initial;
+      border-image-slice: initial;
+      border-image-width: initial;
+      border-image-outset: initial;
+      border-image-repeat: initial;
+      font-style: inherit;
+      font-variant-ligatures: inherit;
+      font-variant-caps: inherit;
+      font-variant-numeric: inherit;
+      font-weight: inherit;
+      font-stretch: inherit;
+      font-size: inherit;
+      line-height: inherit;
+      font-family: inherit;
+      vertical-align: baseline;
+      box-sizing: border-box;
+      border-top-left-radius: 0px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 0p#level_no_divx;
+      opacity: 1;
+    }
+    .txlive-langselector-toggle {
+      overflow-x: hidden;
+      overflow-y: hidden;
+      display: block;
+      padding-top: 2px;
+      padding-right: 16px;
+      padding-bottom: 2px;
+      padding-left: 16px;
+      width: 100%;
+      height: 36px;
+      cursor: pointer;
+    }
+    .txlive-langselector-current {
+      float: left;
+      padding-top: 0px;
+      padding-right: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      max-width: 200px;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .txlive-langselector-marker {
+      float: right;
+      display: block;
+      position: relative;
+      width: 0px;
+      height: 0px;
+      margin-left: 8px;
+      margin-top: 13px;
+      border-right-width: 4px;
+      border-right-style: dashed;
+      border-right-color: transparent;
+      border-left-width: 4px;
+      border-left-style: dashed;
+      border-left-color: transparent;
+    }
+  }
+  .txlive-langselector.txlive-langselector-bottomright {
+    top: auto;
+    left: auto;
+    right: 0px;
+    bottom: 0px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    .txlive-langselector-toggle {
+      overflow-x: hidden;
+      overflow-y: hidden;
+      display: block;
+      border-bottom-width: 2px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(0, 111, 159);
+      padding-top: 2px;
+      padding-right: 16px;
+      padding-bottom: 2px;
+      padding-left: 16px;
+      height: 36px;
+      line-height: 32px;
+      cursor: pointer;
+    }
+  }
+  ul {
+    &:not(.brow2ser-default) {
+      padding-left: 0px;
+      list-style-type: none;
+      li {
+        list-style-type: none;
+      }
+    }
+  }
+  .txlive-langselector-list {
+    position: absolute;
+    width: 100%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 10px;
+    padding-right: 0px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    display: none;
+    background-color: rgb(234, 241, 247);
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 4px;
+    color: rgb(102, 102, 102);
+    list-style-type: none;
+    >li {
+      padding-top: 0px;
+      padding-right: 16px;
+      padding-bottom: 0px;
+      padding-left: 16px;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      &:hover {
+        background-color: rgb(176, 185, 193);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+      }
+    }
+  }
+  .txlive-langselector-bottomright {
+    >.txlive-langselector-list {
+      top: auto;
+      left: auto;
+      right: 0px;
+      bottom: 40px;
+      border-top-width: 1px;
+      border-top-style: solid;
+      border-top-color: rgb(244, 247, 249);
+      border-top-left-radius: 2px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 2px;
+    }
+    .txlive-langselector-marker {
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(255, 255, 255);
+    }
+  }
+  .txlive-langselector-topright {
+    >.txlive-langselector-list {
+      border-top-left-radius: 2px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+      border-bottom-left-radius: 2px;
+    }
+  }
+  .txlive-langselector-bottomleft {
+    .txlive-langselector-marker {
+      border-bottom-width: 4px;
+      border-bottom-style: solid;
+      border-bottom-color: rgb(255, 255, 255);
+    }
+  }
+
+
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+
+
+
+
+
+
+
+
+
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  .row{
+    bordoer:solid red;
+    margin-left:5%;
+    margin-top:5%;
+    border-radius:60%;
+  }
+
+  .column {
+    bordoer:solid red;
+    border-radius:50%;
+
+    float: left;
+    width: 8.3%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+  }
+
+  @media screen and (max-width: 950px) {
+    .column {
+      width: 32%;
+      display: block;
+    }
+  }
+
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .container::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
+  .title {
+    color: grey;
+  }
+
+  .button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .button:hover {
+    background-color: #555;
+  }
+
+
+
+
+  div.transbox {
+    margin: 20px;
+    background-color: #009F;
+    border: 1px solid black;
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+  }
+
+  div.transbox p {
+    margin: 3%;
+    font-weight: bold;
+    color: #000000;
+  }
+
+  #img{
+    max-width:100% !important;
+    min-width:100% !important;
+    border:solid black;
+    height:auto;
+    width:100%;
+    display:block;
+  }
+
+
+  #show{
+    max-width:150% !important;
+    min-width:90% !important;
+
+    height:auto;
+    width:100%;
+    display:block;
+  }
+
+
+  </style>
+</head>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+<script>
+
+
+$("document").ready(function(){
+  $("#fav_mcq").hide("fast");
+
+  $("#fav_play").hide("fast");
+  $("#favourite").hide("fast");
+
+  $("#maths_d").hide("fast");
+
+  $("#body").css("opacity","0.4");
+  $("#card").hide("fast");
+  $("#next_previous").hide("fast");
+  $("#apt").hide("fast");
+  $("#reason").hide("fast");
+  $("#gk").hide("fast");
+  $("#eng").hide("fast");
+  $("#level_page").hide("fast");
+  $("#mix").hide("fast");
+  $("#random").hide("fast");
+  $("#raw").hide("fast");
+  $("#dashboard").hide("fast");
+  $("#loader").show();
+  $("loader").css("z-index","100000");
+  $("#body").css("pointer-events","none");
+  $("#downloads").hide("fast");
+
+})
+
+
+
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDPXdnGPzLiYSWP052wn-FLALO1QeJQsn8",
+  authDomain: "spotdoit14812.firebaseapp.com",
+  databaseURL: "https://spotdoit14812.firebaseio.com",
+  projectId: "spotdoit14812",
+  storageBucket: "spotdoit14812.appspot.com",
+  messagingSenderId: "226675650881"
+};
+
+firebase.initializeApp(config);
+
+
+
+
+
+var storage = firebase.storage();
+
+
+
+function dashboard(){
+  $("#body").css("opacity","1");
+  var scriptTag = document.createElement('script');
+  scriptTag.setAttribute('src','js/dashboard.js');
+  document.head.appendChild(scriptTag);
+  $("#dashboard").fadeIn("fast");
+  $("#main").fadeOut("fast");
+  $("#mix").fadeOut("fast");
+  $("#random").fadeOut("fast");
+  $("#raw").fadeOut("fast");
+  $("#downloads").fadeOut("fast");
+  $("#favourite").fadeOut();
+
+
+
+}
+////////////////////////////////////////
+function show_economics(z){
+
+  for(var i=1;i<=7;i++){
+
+    var starsRef = storage.ref("economics/"+z+"/"+"economics"+i+".png");
+    starsRef.getDownloadURL().then(function(url) {
+      $("#show").append('<img class="img" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+    }).catch(function(error) {
+      alert("Some Error Occured Please reload");
+    })
+  }
+  $("#economics_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+
+
+//////////////////////////////////////
+function show_english(z){
+
+  for(var i=1;i<=7;i++){
+
+    var starsRef = storage.ref("economics/"+z+"/"+"economics"+i+".png");
+    starsRef.getDownloadURL().then(function(url) {
+      $("#show").append('<img class="img" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+    }).catch(function(error) {
+      alert("Some Error Occured please reload");
+    })
+  }
+  $("#economics_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+/////////////////////////////////////////////////
+function show_generalawareness(z){
+
+  $("#show").empty();
+  var num=0;
+  if(z==1){
+    num=5;
+  }
+  else if(z==2){
+    num=4;
+  }
+  else if(z==3){
+    num=10;
+  }
+  else if(z==4){
+    num=4;
+  }
+  else if(z==5){
+    num=2;
+  }
+  else if(z==6){
+    num=12;
+  }
+  else if(z==7){
+    num=9;
+  }
+  else if(z==8){
+    num=9;
+  }
+  else if(z==9){
+    num=14;
+  }else if(z==10){
+    num=6;
+  }
+  else if(z==11){
+    num=6;
+  }
+
+  for (var i = 1; i <=num; i++)
+  (function(i) {
+    var starsRef = storage.ref("generalawareness/"+"generalawareness"+z+"/"+"generalawareness"+z+"_"+i+".PNG");
+
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img "img"+'+i+'" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+
+      }).catch(function(error) {
+        alert("Some Error Occured please reload");
+      })
+
+
+    }, 2500);
+  })(i);
+
+
+  $("body").css("background","gray");
+  $("#generalawareness_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+
+
+//////////////////////////////////////
+function show_geography(z){
+  $("#show").empty();
+  var num=0;
+  if(z==1){
+    num=13;
+  }
+  else if(z==2){
+    num=4;
+  }
+  else if(z==3){
+    num=4;
+  }
+  else if(z==4){
+    num=2;
+  }
+  else if(z==5){
+    num=11;
+  }
+  else if(z==6){
+    num=9;
+  }
+  else if(z==7){
+    num=6;
+  }
+  else if(z==8){
+    num=7;
+  }
+
+
+
+
+  for (var i = 1; i <=num; i++)
+  (function(i) {
+    var starsRef = storage.ref("geography/"+"geography"+z+"/"+"geography"+z+"_"+i+".PNG");
+
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img "img"+'+i+'" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+
+      }).catch(function(error) {
+        alert("Some Error Occured please reload");
+      })
+
+
+    }, 2500);
+  })(i);
+
+
+  $("body").css("background","gray");
+  $("#geography_d").fadeOut("fast");
+  $("#raw").fadeIn("fast").delay(5000);
+
+}
+/////////////////////////////
+
+function show_gk(z){
+  $("#show").empty();
+  var num=0;
+  if(z==1){
+    num=4;
+  }
+  else if(z==2){
+    num=17;
+  }
+  else if(z==3){
+    num=10;
+  }
+  else if(z==4){
+    num=7;
+  }
+  else if(z==5){
+    num=5;
+  }
+  else if(z==6){
+    num=6;
+  }
+  else if(z==7){
+    num=7;
+  }
+  else if(z==8){
+    num=5;
+  }
+
+  for (var i = 1; i <=num; i++)
+  (function(i) {
+
+    var starsRef = storage.ref("gk/"+"gk"+z+"/"+"gk"+z+"_"+i+".PNG");
+
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+
+      }).catch(function(error) {
+        alert("Some Error Occured please reload");
+      })
+
+
+    }, i*1000);
+  })(i);
+
+
+  $("body").css("background","gray");
+  $("#gk_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+
+/////////////////////////////////////////////////////////////////
+function show_history(z){
+  $("#show").empty();
+  var num=0;
+  if(z==1){
+    num=19;
+  }
+  else if(z==2){
+    num=5;
+  }
+  else if(z==3){
+    num=9;
+  }
+  else if(z==4){
+    num=4;
+  }
+
+
+  for (var i = 1; i <=num; i++)
+  (function(i) {
+
+
+    var starsRef = storage.ref("history/"+"history"+z+"/"+"history"+z+"_"+i+".PNG");
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+      }).catch(function(error) {
+        alert("Some Error Occured please reload");
+      })
+
+
+    }, i*1000);
+  })(i);
+
+  $("body").css("background","gray");
+  $("#history_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+
+/////////////////////////////////////////
+function show_maths(z){
+
+
+  for (var i = 1; i <=num; i++)
+  (function(i) {
+
+
+    var starsRef = storage.ref("maths/"+"maths"+z+"/"+"maths"+z+"_"+i+".PNG");
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+      }).catch(function(error) {
+        alert("Some Error Occured please reload");
+      })
+
+
+    }, i*1000);
+  })(i);
+
+  $("body").css("background","gray");
+  $("#maths_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+
+//////////////////////////////////////////////////////////
+function show_politicalscience(z){
+
+  $("#show").empty();
+  var num=0;
+  if(z==1){
+    num=6;
+  }
+  else if(z==2){
+    num=7;
+  }
+  else if(z==3){
+    num=6;
+  }
+  else if(z==4){
+    num=6;
+  }
+  else if(z==5){
+    num=6;
+  }
+  else if(z==6){
+    num=8;
+  }
+  else if(z==7){
+    num=6;
+  }
+  else if(z==8){
+    num=7;
+  }
+
+  else if(z==9){
+    num=7;
+  }
+  else if(z==10){
+    num=10;
+  }
+  else if(z==11){
+    num=9;
+  }
+  else if(z==12){
+    num=4;
+  }
+
+
+
+  for (var i = 1; i <=num; i++)
+  (function(i) {
+
+
+    var starsRef = storage.ref("politicalscience/"+"politicalscience"+z+"/"+"politicalscience"+z+"_"+i+".PNG");
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+      }).catch(function(error) {
+        alert("Some Error Occured please reload");
+      })
+
+
+    }, i*1100);
+  })(i);
+
+  $("body").css("background","gray");
+  $("#politicalscience_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+
+
+//////////////////////////////////////////////////////////
+function show_reasoning(z){
+
+
+  for(var i=1;i<=7;i++){
+
+    var starsRef = storage.ref("economics/"+z+"/"+"economics"+i+".png");
+    starsRef.getDownloadURL().then(function(url) {
+      $("#show").append('<img class="img" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+    }).catch(function(error) {
+      alert("Some Error Occured please reload");
+    })
+  }
+  $("#economics_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+/////////////////////////////////////////////
+
+function zoomin(){
+  var myImg = document.getElementById("show");
+  var currWidth = myImg.clientWidth;
+  if(currWidth == 3500) return false;
+  else{
+    myImg.style.width = (currWidth + 100) + "px";
+  }
+}
+function zoomout(){
+  var myImg = document.getElementById("show");
+  var currWidth = myImg.clientWidth;
+  if(currWidth == 1500) return false;
+  else{
+    myImg.style.width = (currWidth - 100) + "px";
+  }
+}
+
+
+
+
+
+function maths_topic(z){
+  var topic;
+  var iota;
+  $("#show").empty();
+  var num=0;
+  if(z==1){
+    num=19;
+    iota=4;
+    topic="numbers";
+  }
+  else if(z==2){
+    num=37;
+    topic="simplification";
+    iota=20;
+  }
+  else if(z==3){
+    num=53;
+    topic="percentage";
+    iota=38
+  }
+  else if(z==4){
+    num=63;
+    topic="simple_and_compound_intreast";
+    iota=54;
+  }
+  else if(z==5){
+    num=75;
+    topic="profit_and_loss";
+    iota=64;
+  }
+  else if(z==6){
+    num=83;
+    topic="average";
+    iota=76;
+  }
+
+  else if(z==7){
+    num=93;
+    topic="ratio_and_proportion";
+    iota=84;
+  }
+  else if(z==8){
+    num=101;
+    topic="work_time";
+    iota=94;
+  }
+  else if(z==9){
+    num=109;
+    topic="time_speed_and_distance";
+    iota=102;
+  }
+  else if(z==10){
+    num=119;
+    topic="area_and_volume";
+    iota=110;
+  }else if(z==11){
+    num=127;
+    topic="number_series";
+    iota=120;
+  }
+  else if(z==12){
+    num=137;
+    topic="permutation_combination_probability";
+    iota=128;
+  }
+  console.log(topic);
+  for (var i = iota; i <=num; i++)
+  (function(i) {
+    var starsRef = storage.ref("hindi/"+"maths/"+topic+"/"+"maths "+"["+i+"]"+".jpg");
+    setTimeout(function() {
+
+
+      starsRef.getDownloadURL().then(function(url) {
+
+        $("#show").append('<img class="img "img"+'+i+'" id="img" style="margin-top:40px" max-width="1000px" src="'+url+'">');
+
+      }).catch(function(error) {
+        alert("error_url");
+      })
+
+
+    }, 200);
+  })(i);
+
+
+  $("body").css("background","gray");
+  $("#maths_d").fadeOut("fast");
+  $("#raw").fadeIn("fast");
+}
+
+
+
+
+
+
+function jump(){
+
+  var initial={
+    "reasoning" : [0,0],
+    "history": [0,0],
+    "indian_gk" : [0,0],
+    "world_gk": [0,0],
+    "up_gk": [0,0],
+    "sports_gk": [0,0],
+    "aptitude": [0,0],
+    "railway": [0,0]
+  }
+
+  $("#loader").show()
+
+  firebase.auth().onAuthStateChanged(function(user) {
+
+    if (user) {
+      var user = firebase.auth().currentUser;
+      var str=user.email;
+      var e=str.replace(/[^a-zA-Z0-9]/g, "");
+
+      //$("#register").html("Pease wait ..");
+      $.get("https://spotdoit14812.firebaseio.com/users/hindi/"+e+".json", function(post) {
+      //  console.log(post);
+        if(post){
+        if(post==null){
+          var ref = firebase.database().ref("users/"+"hindi/"+e);
+          ref.update(initial);   // Creates a new ref with a new "push key"
+          //window.location="hindi.html"
+          $("#loader").hide();
+        }else{
+          $("#loader").hide();
+          window.location="hindi.html"
+
+        }
+      }else{
+        window.location="hindi.html"
+
+      }
+      })
+    }
+  })
+
+}
+
+$("document").ready(function(){
+
+
+
+  $("loader").css("opacity","1")
+  if(localStorage.getItem("english_data")==null||localStorage.getItem("english_data")==undefined){
+    $.get("https://spotdoit14812.firebaseio.com/english/englisih.json", function(obj) {
+      $("#body").css("opacity","1")
+      $("#body").css("pointer-events","");
+
+      english_data=JSON.stringify(obj);
+      $("#english_data").html(english_data);
+      english_data=JSON.parse($("#english_data").text());
+      localStorage.setItem('english_data', JSON.stringify(obj));
+
+      $("#loader").hide()
+    })
+  }
+  else if(localStorage.getItem("english_data")){
+
+    english_data= JSON.parse(localStorage.getItem('english_data'));
+
+    $("#loader").hide()
+    $("#body").css("opacity","1")
+    $("#body").css("pointer-events","");
+  }
+  //else{
+  /*
+  $.get("https://spotdoit14812.firebaseio.com/english/englisih.json", function(obj) {
+  $("#body").css("opacity","1")
+  $("#body").css("pointer-events","");
+
+  english_data=JSON.stringify(obj);
+  $("#english_data").html(english_data);
+  english_data=JSON.parse($("#english_data").text());
+  localStorage.setItem('english_data', JSON.stringify(obj));
+
+  $("#loader").hide()
+})
+
+
+//}
+*/
+
+
+})
+
+var english_data;
+var th;
+var loc;
+
+var topic;
+var main_topic;
+var db;
+var head;
+var tab_=1;
+loc=location.hash;
+
+//var tablet=1;
+function tab(q){
+
+  if(q===1){
+    tab_=q;
+
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+    $("#mix").fadeOut(1);
+    $("#downloads").fadeOut(1);
+    $("#favourite").fadeOut(1);
+
+
+    $("#practice").delay(100).fadeIn("fast");
+    //$("#practice").slideUp("fast");
+
+  }
+  else if(q===2){
+    tab_=q;
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+    $("#practice").fadeOut(1);
+    $("#downloads").fadeOut(1);
+    $("#favourite").fadeOut(1);
+
+    $("#mix").delay(100).fadeIn("fast");
+
+  }
+  else if(q===3){
+    tab_=q;
+    $("#practice").fadeOut(1);
+    $("#mix").fadeOut(1);
+    $("#favourite").fadeOut(1);
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+    $("#downloads").delay(100).fadeIn("fast");
+
+  }
+  else if(q===4){
+    tab_=q;
+    $("#practice").fadeOut(1);
+    $("#mix").fadeOut(1);
+    $("#downloads").fadeOut(1);
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+    $("#favourite").delay(100).fadeIn("fast");
+  }
+
+}
+
+
+function random(w){
+
+
+        $("#random1").css('background-color', '');
+        $("#random1").css('border', '');
+
+        $("#random2").css('background-color', '');
+        $("#random2").css('border', '');
+
+        $("#random3").css('background-color', '');
+        $("#random3").css('border', '');
+
+        $("#random4").css('background-color', '');
+        $("#random4").css('border', '');
+
+        $("#random1").attr('onclick', 'check(1)');
+        $("#random2").attr('onclick', 'check(2)');
+        $("#random3").attr('onclick', 'check(3)');
+        $("#random4").attr('onclick', 'check(4)');
+
+  if(w===1){
+    loc="#random_aptitude";
+
+  }
+  if(w===2){
+    loc="#random_reason";
+
+  }
+
+  if(w===3){
+    loc="#random_gk";
+
+  }
+
+  if(w===4){
+    loc="#random_eng";
+
+  }
+  var scriptTag = document.createElement('script');
+  scriptTag.setAttribute('src','js/random.js');
+
+  document.head.appendChild(scriptTag);
+  $("#main").fadeOut("fast");
+  $("#mix").fadeOut("fast");
+  $("#random").delay(0).fadeIn("fast");
+
+  $('#local').append('<span  id="w"  disabled>'+w+'</span>');
+
+
+}
+
+
+
+
+function goBack(){
+
+  //$('#nav').html("");//+ heading;
+
+  loc=location.hash;
+  console.log(loc);
+  if(loc=="#aptitude" ||loc=="#reason" ||loc=="#gk" ||loc=="#eng"  ){
+
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+    $("#apt").fadeOut("fast");
+    $("#reason").fadeOut("fast");
+    $("#eng").fadeOut("fast");
+    $("#gk").fadeOut("fast");
+    $("#main").fadeIn("fast");
+location.hash="#home";
+
+
+  }
+  else if(loc=="#level_page"){
+
+    if(th===1){
+      loc="#aptitude";
+      location.hash="#aptitude";
+      $("#level_page").fadeOut("fast");
+      $("#apt").fadeIn("fast");
+      $("#MyDiv").empty();
+
+
+    }
+    else if(th===2){
+      loc="#reason";
+      location.hash="#reason";
+      $("#level_page").fadeOut("fast");
+      $("#reason").fadeIn("fast");
+      $("#MyDiv").empty();
+
+    }
+    else if(th===3){
+      loc="#gk";
+      location.hash="#eng";
+
+      $("#gk").fadeIn("fast");
+      $("#MyDiv").empty();
+      $("#level_page").fadeOut("fast");
+
+    }
+    else if(th===4){
+      loc="#eng";
+      location.hash="#eng";
+
+      $("#eng").fadeIn("fast");
+      $("#MyDiv").empty();
+      $("#nav").empty();
+      $("#level_page").fadeOut("fast");
+
+
+    }
+  }
+  else if(loc=="#mcq"){
+
+    $("#mcq").fadeOut("fast");
+    location.hash="#level_page"
+    $("#level_page").fadeIn("fast");
+    //$("#level_no").empty();
+  }
+  else if(loc=="#random_aptitude" || loc=="#random_reason" || loc=="#random_gk" || loc=="#random_eng"){
+    $("#random").fadeOut("fast");
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+    $("#main").fadeIn("fast");
+    $("#mix").fadeIn("fast");
+    location.hash="#home";
+  }
+  else if(location.hash=="#economics_d"||location.hash=="#reason_d"||location.hash=="#english_d"||location.hash=="#geography_d"||location.hash=="#generalawareness_d"||location.hash=="#maths_d"||location.hash=="#gk_d"||location.hash=="#history_d"||location.hash=="#politicalscience_d")
+  {
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+    $("#economics_d").hide("fast");
+    $("#english_d").hide("fast");
+    $("#generalawareness_d").hide("fast");
+    $("#geography_d").hide("fast");
+    $("#gk_d").hide("fast");
+    $("#history_d").hide("fast");
+    $("#maths_d").hide("fast");
+    $("#politicalscience_d").hide("fast");
+    $("#reason_d").hide("fast");
+    $("#downloads").fadeIn("fast");
+    $("#main").fadeIn("fast");
+location.hash="#home";
+  }
+  else if(location.hash=="#topic_e"){
+    $("#raw").fadeOut("fast");
+    $("#economics_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="economics_d";
+  }
+  else if(location.hash=="#topic_en"){
+    $("#raw").fadeOut("fast");
+    $("#english_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="english_d";
+  }
+  else if(location.hash=="#topic_g"){
+    $("#raw").fadeOut("fast");
+    $("#generalawareness_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="generalawareness_d";
+  }
+  else if(location.hash=="#topic_geo"){
+    $("#raw").fadeOut("fast");
+    $("#geography_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="geography_d";
+  }
+  else if(location.hash=="#topic_gk"){
+    $("#raw").fadeOut("fast");
+    $("#gk_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="gk_d";
+  }
+  else if(location.hash=="#topic_h"){
+    $("#raw").fadeOut("fast");
+    $("#history_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="history_d";
+  }
+  else if(location.hash=="#topic_m"){
+    $("#raw").fadeOut("fast");
+    $("#maths_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="maths_d";
+  }
+  else if(location.hash=="#topic_p"){
+    $("#raw").fadeOut("fast");
+    $("#politicalscience_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="politicalscience_d";
+  }
+  else if(location.hash=="#topic_r"){
+    $("#raw").fadeOut("fast");
+    $("#reasoningn_d").fadeIn("");
+
+      $("body").css("background","white");
+
+    location.hash="reasoningn_d";
+  }
+  else if(location.hash=="#dashboard"){
+    $("#dashboard").fadeOut("fast");
+    $("#main").fadeIn("fast");
+    location.hash="#home";
+    if(tab_==1){
+      $("#practice").delay(0).fadeIn("fast");
+      $("#downloads").fadeOut("fast");
+      $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+    }else if(tab_==2){
+      $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+      $("#mix").delay(100).fadeIn("fast");
+      $("#downloads").fadeOut("fast");
+
+    }
+    else if(tab_==3){
+      $("#downloads").fadeIn("fast");
+      $("body").css("background","white");
+
+    }
+  }
+
+  else if(location.hash=="#fav_apt"||location.hash=="#fav_reason"||location.hash=="#fav_gk"||location.hash=="#fav_eng"){
+    $("#fav_mcq").fadeOut("fast")
+    $("#fav_mcq").fadeOut("fast");
+    $("#favourite").fadeIn("fast");
+    $("#main").fadeIn("fast");
+    $("body").css("background","linear-gradient(to right, #B06AB3, #4568DC");
+
+  }
+  else if(location.hash=="#dashboard_"){
+    $("#main").fadeIn("fast");
+location.hash="#home";
+    $("#dashboard").fadeOut(0);
+    if(tab_===1){
+tab(1);
+    }if(tab_===2){
+tab(2);
+    }
+    if(tab_===3){
+tab(3);
+    }
+    if(tab_===4){
+tab(4);
+    }
+
+
+  }
+
+
+}
+
+
+function run(r){
+  $("#level_page").fadeOut("");
+  $("#mcq").show("fast");
+  location.hash="#mcq";
+  var scriptTag = document.createElement('script');
+  scriptTag.setAttribute('src','js/question.js');
+
+  document.head.appendChild(scriptTag)
+  //alert(r);
+  $("#level_no_div").empty();
+  $('#level_no_div').append('<span  id="level_no"  disabled>'+r+'</span>');
+  $('#local').append('<span  id="main_topic_no"  disabled>'+db+'</span>');
+
+}
+
+$(document).ready(function(){
+
+  document.addEventListener("deviceready", onDeviceReady, false);
+  function onDeviceReady() {
+
+  }
+
+  document.addEventListener("backbutton", onBackKeyDown, false);
+  function onBackKeyDown() {
+
+    /*            if(locaion.hash==""){
+    document.getElementById('exit_btn').click();
+  }*/
+  goBack();
+}
+
+
+
+
+/// main function startas here
+
+
+$("th").click(function(){
+  $("#loader").show("fast");
+  window.location.href='#level_page'
+  topic=this.id;
+  head =  $(this).attr('class');
+  loc="#level_page"
+  $('#nav').html(head);//+ heading;
+
+  $("#level_page").fadeIn("fast");
+
+  if(th=="1"){
+    $("#apt").fadeOut("fast");
+    th=1;
+  }
+  else if(th=="2"){
+    $("#reason").fadeOut("fast");
+    th=2;
+  }
+  else if(th=="3"){
+    $("#gk").fadeOut("fast");
+    th=3;
+  }
+  else if(th=="4"){
+    $("#eng").fadeOut("fast");
+    th=4;
+  }
+
+
+
+  // function to create level
+
+  var dv_leve;
+  var topic_levels;
+  var db_level;
+
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    var user = firebase.auth().currentUser;
+    var str=user.email;
+    var d=str.replace(/[^a-zA-Z0-9]/g, "");
+    console.log(d);
+    $.get("https://spotdoit14812.firebaseio.com/users/eng/"+d+".json", function(users) {
+
+      topic_levels=english_data[db][main_topic][topic].sub.length;
+      $("#local").append('<span  id="topic_levels"  disabled>'+topic_levels+'</span>')
+      db_level=users[main_topic][topic][0];
+      dv_leve=db_level;
+
+      $("#loader").hide();
+      for(var p=1;p<=topic_levels;p++){
+        var na=p-1;
+        if(p<=dv_leve){
+
+          $('#MyDiv').append('<button onclick="run('+na+')"  id="test+'+p+'" class="btn1 btn-success" ><span class="glyphicon glyphicon-ok pull-left" style="margin-top:0px;background-color:green;padding:10px 10px 10px 10px;margin-left:-30px"></span>Level-'+p+'</button>');
+
+        }
+        else if(p<=dv_leve+1){
+          $('#MyDiv').append('<button onclick="run('+na+')"  id="test+'+p+'" class="btn1 btn-success" ><span class="glyphicon glyphicon-lock pull-left" style="margin-top:0px;background-color:red;padding:10px 10px 10px 10px;margin-left:-30px"></span>Level-'+p+'</button>');
+
+        }
+        else if(p===1){
+          $('#MyDiv').append('<button onclick="run('+na+')"  id="test+'+p+'" class="btn1 btn-success" ><span class="glyphicon glyphicon-lock pull-left" style="margin-top:0px;background-color:red;padding:10px 10px 10px 10px;margin-left:-30px"></span>Level-'+p+'</button>');
+        }
+        else{
+          $('#MyDiv').append('<button onclick="run('+na+')"  id="test+'+p+'" class="btn1 btn-primary" disabled><span class="glyphicon glyphicon-lock pull-left" style="margin-top:0px;background-color:red;padding:10px 10px 10px 10px;margin-left:-30px"></span>Level-'+p+'</button>');
+
+        }
+      }
+
+    })
+  })
+
+
+})
+
+});
+
+
+function m_topic(x,y){
+  if(x-y===1){
+    //alert("aptirude");
+    main_topic="aptitude";
+    db=2;
+    console.log(main_topic);
+
+  }
+  else if(x-y==2){
+    //alert("reasoning");
+    main_topic="reasoning";
+    db=0;
+
+
+  }
+  else if(x-y==3){
+    //  alert("gk");
+    main_topic="gk";
+    db=1;
+
+  }
+  else if(x-y==4){
+    //  alert("english");
+    main_topic="english";
+    db=3;
+
+  };
+
+}
+
+
+
+
+
+
+
+
+
+
+$(window).scroll(function() {
+  var scroll = $(window).scrollTop();
+  if (scroll >= 64) {
+    $(".navbar-lower").addClass("navbar-fixed");
+  }
+  else {
+    $(".navbar-lower").removeClass("navbar-fixed");
+  }
+});
+
+
+// FADE IN SMALL LOGO AND FAB ON SCROLL
+$(window).scroll(function() {
+  var scrollPosition = $(this).scrollTop();
+  var $fadeInLogo = $('.fadeInLogo');
+  var $grow2InFab = $('.halfway-fab');
+  if (scrollPosition > 128) {
+    // Fade in logo & bring in FAB
+    $fadeInLogo.fadeIn(200);
+    $grow2InFab.removeClass("scale-out");
+  } else {
+    // Fade out logo & remove FAB
+    $fadeInLogo.fadeOut(200);
+    $grow2InFab.addClass("scale-out");
+  }
+});
+
+
+// MODAL
+$(document).ready(function(){
+  $('.modal').modal();
+});
+
+// DROPDOWNS
+$(document).ready(function(){
+  $(".dropdown-button").dropdown(
+    {
+      belowOrigin: true
+    }
+  );
+});
+
+//TABS
+$(document).ready(function(){
+  $('ul.tabs').tabs();
+});
+
+//SCROLLSPY
+$(document).ready(function(){
+  $('.scrollspy').scrollSpy();
+});
+
+// SIDEBAR
+$(document).ready(function(){
+  $('.button-collapse').sideNav({
+    menuWidth: 300, // Default is 300
+    edge: 'left', // Choose the horizontal origin
+    closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    draggable: true // Choose whether you can drag to open on touch screens
+  }
+);
+});
+
+
+loc=location.hash;
+
+function change(q){
+
+
+
+  $("#main").fadeOut();
+
+  $("#apt").fadeOut("fast");
+  $("#reason").fadeOut("fast");
+  $("#gk").fadeOut("fast");
+  $("#eng").fadeOut("fast");
+
+
+
+  if(q=="1"){
+    $("#apt").fadeIn("fast");
+    $("body").css("background","white");
+
+    th=1;
+
+  }
+  else if(q=="2"){
+    $("#reason").fadeIn("fast");
+    $("body").css("background","white");
+
+    th=2;
+  }
+  else if(q=="3"){
+    $("body").css("background","white");
+
+    $("#gk").fadeIn("fast");
+    $("body").css("background","white");
+
+    th=3;
+  }
+  else if(q=="4"){
+
+    $("#eng").fadeIn("fast");
+    $("body").css("background","white");
+
+    th=4;
+  }
+
+}
+
+
+function change_d(w){
+  $("body").css("background","white");
+
+  if(w===1){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#economics_d").delay(100).fadeIn("fast");
+  }
+
+  if(w===2){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#english_d").delay(100).fadeIn("fast");
+  }
+  if(w===3){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#generalawareness_d").delay(100).fadeIn("fast");
+  }
+  if(w===4){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#geography_d").delay(100).fadeIn("fast");
+  }
+  if(w===5){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#gk_d").delay(100).fadeIn("fast");
+  }
+  if(w===6){
+    $("#downloads").fadeOut("fast");
+
+    $("#main").hide("fast");
+
+
+    $("#history_d").delay(100).fadeIn("fast");
+  }
+  if(w===7){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#maths_d").delay(100).fadeIn("fast");
+  }
+  if(w===8){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#politicalscience_d").delay(100).fadeIn("fast");
+  }
+  if(w===9){
+    $("#downloads").fadeOut("fast");
+    $("#main").hide("fast");
+    $("#reason_d").delay(100).fadeIn("fast");
+  }
+
+
+
+}
+
+
+$(document).ready(function(){
+  $("#economics_d").hide("fast");
+  $("#english_d").hide("fast");
+  $("#generalawareness_d").hide("fast");
+  $("#geography_d").hide("fast");
+  $("#gk_d").hide("fast");
+  $("#history_d").hide("fast");
+  $("#maths_d").hide("fast");
+  $("#politicalscience_d").hide("fast");
+  $("#reason_d").hide("fast");
+
+})
+
+function favourite(e){
+  //  alert("ranjit")
+  $("body").css("background","white");
+
+  $("#fav_show").empty();
+
+  $("#favourite").fadeOut("fast");
+  $("#main").fadeOut("fast");
+  $("#fav_mcq").fadeIn("fast")
+  $("#fav_mcq").fadeIn("fast");
+  var fav;
+  if(e===1){
+    fav="aptitude";
+  }
+  else if(e===2){
+    fav="reasoning";
+  }
+  else if(e===3){
+    fav="gk";
+  }
+
+  else if(e===4){
+    fav="english";
+  }
+  $(".fav_head").html(fav);
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    var user = firebase.auth().currentUser;
+    var str=user.email;
+    var d=str.replace(/[^a-zA-Z0-9]/g, "");
+    console.log(d);
+    $.get("https://spotdoit14812.firebaseio.com/favourite/eng/"+d+"/"+fav+".json", function(users) {
+
+      if(users){
+        for(var u=0;u<users.length;u++){
+          var append= '<div class="container" style="border solid"><div class=""><div id="question_fav'+u+'">what is the capital of india?</div></div><div class="" id="" onclick="" ><b><p id="ans_fav'+u+'" > Delhi</p></b></div><p style="border:solid 2px"></p></div>';
+
+          $("#fav_show").append(append);
+          //console.log(users);
+          console.log(users[u]);
+          $("#question_fav"+u).html(u+1+") "+users[u].ques);
+          $("#ans_fav"+u).html("Ans. "+users[u].ans);
+          $("#ans_fav"+u).css("font-decoration", "bold");
+        }
+      }
+      else{
+
+        $("#fav_show").append('<center><div style="margin-top:50%;margin-left:;font-size:30px;color:gray">No Favourite Question</div></center>');
+      }
+    })
+  })
+}
+
+var data;
+var length_g;
+function fav_play(){
+
+  $("#main").hide("fast");
+  $("#favourite").hide("fast");
+  $("#fav_play").show("fast");
+
+  firebase.auth().onAuthStateChanged(function(user) {
+    var user = firebase.auth().currentUser;
+    var str=user.email;
+    var d=str.replace(/[^a-zA-Z0-9]/g, "");
+    console.log(d);
+
+
+    $.get("https://spotdoit14812.firebaseio.com/favourite/eng/"+d+".json", function(fullusers) {
+      data=fullusers;
+      dummy()
+    })
+  })
+}
+var array=[];
+var array2=[];
+function dummy(){
+
+
+  var random=Math.floor(Math.random() * 4)+1;
+  var topic=["","aptitude","reasoning","gk","english"];
+  var fav=topic[random]  //Math.floor(Math.random() * 3)+1
+  if(data[fav]){
+    length_g=data[fav].length;
+    var random2=Math.floor(Math.random() * length_g-1)+1;
+
+
+    $("#fav_question").html(data[fav][random2].ques)
+
+    $("#fav1").html(data[fav][random2].obt1)
+    $("#fav2").html(data[fav][random2].obt2)
+    $("#fav3").html(data[fav][random2].obt3)
+    $("#fav4").html(data[fav][random2].obt4)
+  }
+  else{
+    dummy();
+  }
+
+
+}
+
+
+function next_fav(){
+  dummy();
+}
+
+
+
+document.addEventListener("backbutton", function(e){
+$("#exit_btn").click();
+});
+
+
+
+
+
+
+
+</script>
+
+<body style="background:linear-gradient(to right, #B06AB3, #4568DC);font-style:Raleway" >
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog" style="margin-top:150px;">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title" style="text-align:center;">Do You Want To LogOut</h4>
+        </div>
+        <div class="modal-footer">
+          <center>
+            <button type="button" class="btn btn-primary"style="width:50px;" onclick="logout()" >Yes</button>
+            <button type="button" class="btn btn-danger" style="width:50px;" data-dismiss="modal">No</button>
+          </center>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="body" style="font-family: 'Raleway', Helvetica, Arial, sans-serif" >
+    <div id="main" >
+      <div class="navbar-lower">
+        <nav class="z-depth-0 nav-extended">
+          <div class="nav-wrapper">
+            <div class="row2">
+              <div class="col s12">
+
+                <a href="#" data-activates="mobile-demo" class="button-collapse show-on-large" ><i style="margin-top:20px" class="material-icons">menu</i></a>
+
+                <a class="fadeInLogo brand-logo animated slideInUp">
+                  <!-- M -->
+                  <!-- <img src="https://materializecss.com/res/materialize.svg" alt="" style="margin-top:12px;" height="40px"/> -->
+                  <i class="large material-icons">important_devices</i>
+                </a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                  <li><a href="#modal1">Home</a></li>
+                  <li class="active"><a href="#modal1">About</a></li>
+                  <li><a href="#modal1">Team</a></li>
+                  <li><a href="#modal1">Blog</a></li>
+                  <li><a href="#modal1">Resources</a></li>
+                  <li><a href="#modal1">Careers</a></li>
+                  <li><a href="#!" class="dropdown-button" data-activates="dropdown1">Contact<i class="material-icons right">arrow2_drop_down</i></a></li>
+                </ul>
+              </div>
+              <div class="nav-content " style="margin-top:-20px">
+
+                <div class="col s12 nav-content blue">
+                  <ul>
+                    <li><div style="margin-top:30px;font-size:30px;margin-left:30px;font-family: 'Raleway', Helvetica, Arial, sans-serif;text-align:center;align:center" class="col s12 nav-header blue">Railway</div></li>
+                  </ul>
+
+                  <ul class="tabs tabs-transparent ">
+                    <li class="tab"><a href="#tab1" class="active" onclick="tab(1)" style="font-decoration:none">Practice</a></li>
+                    <li class="tab" style="font-family: 'Raleway', Helvetica, Arial, sans-serif"><a href="#tab2" onclick="tab(2)">Mix</a></li>
+                    <li class="tab" style="font-family: 'Raleway', Helvetica, Arial, sans-serif"><a href="#tab4" onclick="tab(4)">Favourite</a></li>
+                    <li class="tab" style="font-family: 'Raleway', Helvetica, Arial, sans-serif"><a href="#tab3" onclick="tab(3)">Reading</a></li>
+                  </ul>
+                  <ul class="side-nav white " id="mobile-demo">
+
+
+                    <li class="sidenav-header blue ">
+                      <div class="row2">
+                        <center>
+                          <div class="col s4">
+                            <img src="img/sports.png" width="100px" height="48px" style="margin-left:" alt="user" class="circle responsive-img valign profile-image">
+                          </div></center>
+                          <div class="col s8">
+                            <center><a class="btn-flat dropdown-button waves-effect waves-light white-text" href="#" data-activates="profile-dropdown" style="text-align:center;margin-left:30px" id="user_e">User<i class="mdi-navigation-arrow2-drop-down right"></i></a></center>
+                            <ul id="profile-dropdown" class="dropdown-content">
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+
+                      <li class="white">
+                        <ul class="collapsible collapsible-accordion">
+                          <li>
+                            <a href="#dashboard_" onclick="dashboard()" class="collapsible-header waves-effect waves-blue"><i class="material-icons" style="color:orange">dashboard</i>Dashboard <i class="material-icons right" style="margin-right:0;">arrow2_drop_down</i></a>
+                          </li>
+                        </ul>
+                      </li>
+                    </hr>
+
+                    <li class="white">
+                      <ul class="collapsible collapsible-accordion">
+                        <li>
+                          <a class="collapsible-header waves-effect waves-blue"><i class="material-icons " style="color:blue">assignment</i>Language <i class="material-icons right" style="margin-right:0;">arrow2_drop_down</i></a>
+                          <div class="collapsible-body">
+                            <ul>
+                              <li onclick="jump()"><a class="waves-effect waves-blue" href="#"><i class="material-icons">closed_caption</i>Hindi<span class="new badge right yellow darken-3"></span></a></li>
+                            </hr>
+                          </ul>
+                        </div>
+                      </li>
+                    </ul>
+                  </li>
+
+                      </hr>
+
+                <li class="white" ><a  onClick='window.open("https://www.toprankers.com/exams/railway-group-d-syllabus/", "_system");' class="waves-effect waves-blue"><i class="material-icons" style="color:#BC243C">list</i>Syllabus</a></li>
+                <li class="white" id="log" href="#"  onclick="window.plugins.socialsharing.share('Message and link', null, null, 'https://firebasestorage.googleapis.com/v0/b/spotdoit14812.appspot.com/o/app-debug.apk?alt=media&token=f967041c-4031-4ece-bec2-abff6adcf35a')" ><a href="#" class="waves-effect waves-blue"><i class="material-icons" style="color:blue">share</i> Share<span class="new badge right yellow darken-3"></span></a></li>
+                <li class="white" id="log" href="#"  data-toggle="modal" data-target="#myModal"><a href="#" class="waves-effect waves-blue"><i class="glyphicon glyphicon-log-out" style="color:#45B8AC"></i> LogOut<span class="new badge right yellow darken-3"></span></a></li>
+                <li class="white" id="exit_btn" href="#"  data-toggle="modal" data-target="#exit"><a href="#" class="waves-effect waves-blue"><i class="material-icons" style="color:red">exit_to_app</i> Exit<span class="new badge right yellow darken-3"></span></a></li>
+                <hr>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </nav>
+  </div>
+
+
+  <div class="row"  id="practice" class="" >
+
+
+    <div class="column" style="">
+      <div class="card">
+        <a  href="#aptitude" onclick="change(1); m_topic(2,1)" style="color:black">    <img src="img/history.png" alt="John" style="width:100%">
+          <div >
+            <h5   id="aptitude"  style="font-size:1.1em;font-family:Raleway">Aptitude</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#reason" onclick="change(2);m_topic(3,1)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.0em;font-family:Raleway">Reasoning</h5>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#gk"> <img  src="img/aptitude.png" onclick="change(3);m_topic(4,1)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.1em;font-family:Raleway">Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#eng"><img src="img/sports.png" onclick="change(4);m_topic(5,1)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.0em;font-family:Raleway" >English</h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+
+<div class="row" id="mix" >
+
+  <div class="column" >
+    <div class="card">
+      <a  href="#random_aptitude" onclick="random(1); m_topic(2,1)" style="color:black">    <img src="img/history.png" alt="John" style="width:100%">
+        <div >
+          <h5   id="aptitude"  style="font-size:1.0em;font-family:Raleway">Aptitude</h5>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="column" >
+    <div class="card">
+      <a href="#random_reason" onclick="random(2); m_topic(3,1)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+      <div >
+        <h5   style="font-size:1.0em;font-family:Raleway">Reasoning</h5>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="column" >
+    <div class="card">
+      <a href="#random_gk"> <img  src="img/aptitude.png" onclick="random(3); m_topic(4,1)" alt="John" style="width:100%"></a>
+      <div >
+        <h5 style="font-size:1.2em">Gk</h5>
+      </div>
+    </div>
+  </div>
+  <div class="column" >
+    <div class="card">
+      <a href="#random_eng"><img src="img/sports.png" onclick="random(4);m_topic(5,1)"  onclick="m_topic(2,1)" alt="John" style="width:100%"></a>
+      <div >
+        <h5 style="font-size:1.2em" >English</h5>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<div style="background:white" id="apt">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:-60px;font-size:30px">Aptitude</h3>
+  </p>
+
+
+  <div id="topic" style="margin-top:80px">
+    <div  id="accordion">
+      <div  style="margin-top:15px;margin-left:35px;width:80%">
+        <div id="collapse2" >
+          <div class="panel-body">
+
+
+            <table class="table">
+              <thead>
+                <tr >
+                  <th id="0" class="Problem_on_Age" >
+                    <a id="main"> Problem on Age</a>
+                  </th>
+                </tr>
+
+
+                <tr>
+                  <th id="1" class="Partnership"><a >Partnership</a>
+
+
+                  </th>
+                </tr>
+                <tr >
+                  <th id="2" class="Percentage"><a >Percentage</a>
+
+
+                  </th>
+                </tr>
+
+
+                <tr>
+                  <th id="3" class="Permutations_Combination"><a >Permutations Combination</a>
+
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="4" class="Probability"><a >Probability</a>
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="5" class="Problem_on_HCF_and_LCM"><a >Problem on HCF and LCM</a>
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="6" class="Problem_on_Number"><a >Problem on Number</a>
+
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="7" class="Profit_Loss"><a >Profit Loss</a>
+
+
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="8" class="Simplification"><a >Simplification</a>
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="9" class="Average"><a >Average</a>
+
+
+                  </th>
+                </tr>
+
+                <tr>
+                  <th id="10" class="Blood_Relation"><a >Blood Relation</a>
+
+
+                  </th>
+                </tr>
+
+
+                <tr>
+                  <th id="11" class="Decimal_Relation"><a >Decimal Fration</a>
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="12" class="Lograthim"><a >Lograthim</a>
+
+                  </th>
+                </tr>
+                <tr>
+                  <th id="13" class="Problem_on_Train"><a >Problem on Train</a></th>
+                </tr>
+                <tr>
+                  <th id="14" class="Progression"><a >Progression</a></th>
+                </tr>
+                <tr>
+                  <th id="15" class="Ratio"><a >Ratio</a></th>
+                </tr>
+                <tr>
+                  <th id="16" class="Series"><a >Series</a></th>
+                </tr>
+                <tr>
+                  <th id="17" class="Speed_Distance"><a >Speed Distance</a></th>
+                </tr>
+              </thead>
+
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div style="background:white" id="reason" >
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:-60px;font-size:30px">Reasoning</h3>
+  </p>
+
+
+  <div id="topic" style="margin-top:80px">
+    <div  id="accordion">
+      <div  style="margin-top:15px;margin-left:35px;width:80%">
+        <div id="collapse2" >
+          <div class="panel-body">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th id="0" class="Coding_and_Decoding" ><a >Coding and Decoding</a></th>
+                </tr>
+                <tr>
+                  <th id="1" class="Odd_Man_Out"><a >Odd Man Out</a></th>
+                </tr>
+                <tr>
+                  <th id="2" class="Analogy"><a >Analogy</a></th>
+                </tr>
+                <tr>
+                  <th id="3" class="Direction_Sense"><a >Direction Sense</a></th>
+                </tr>
+                <tr>
+                  <th id="4" class="Essential_Part"><a >Essential Part</a></th>
+                </tr>
+                <tr>
+                  <th id="5"class="Verbal_Classification"><a >Verbal Classification</a></th>
+                </tr>
+                <tr>
+                  <th id="6"class="Truth_Verification"><a >Truth Verification</a></th>
+                </tr>
+                <tr>
+                  <th id="7" class="Series"><a >Series</a></th>
+                </tr>
+                <tr>
+                  <th id="8" classs="Letter_and_Symbol"><a >Letter and Symbol</a></th>
+                </tr>
+
+              </thead>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div style="background:white" id="gk">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:-60px;font-size:30px">Gk</h3>
+  </p>
+
+
+  <div id="topic" style="margin-top:80px">
+    <div  id="accordion">
+      <div  style="margin-top:15px;margin-left:35px;width:80%">
+        <div id="collapse2" >
+          <div class="panel-body">
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th id="0" class="Australia"><a >Australia</a></th>
+                </tr>
+                <tr>
+                  <th id="1" class="Awards_And_Honours"><a >Awards And Honours</a></th>
+                </tr>
+                <tr>
+                  <th id="2" class="Economy"><a >Economy</a></th>
+                </tr>
+                <tr>
+                  <th id="3" class="Environment"><a >Environment</a></th>
+                </tr>
+                <tr>
+                  <th id="4" class="Famous_Personality"><a >Famous Personality</a></th>
+                </tr>
+                <tr>
+                  <th id="5" class="Famous_Places"><a >Famous Places</a></th>
+                </tr>
+                <tr>
+                  <th id="6" class="General_Science"><a >General Science</a></th>
+                </tr>
+                <tr>
+                  <th id="7" class="Biology"><a >Biology</a></th>
+                </tr>
+
+                <tr>
+                  <th id="8" class="Books_And_Authors"><a >Books And Authors</a></th>
+                </tr>
+                <tr>
+                  <th id="9" class="Chemistry"><a >Chemistry</a></th>
+                </tr>
+
+
+                <tr>
+                  <th id="10" class="Physics"><a >Physics</a></th>
+                </tr>
+                <tr>
+                  <th id="11" class="Day_and_Year"><a >Day and Year</a></th>
+                </tr>
+                <tr>
+                  <th id="12" class="Invention"><a >Invention</a></th>
+                </tr>
+                <tr>
+                  <th id="13" class="Sports"><a >Sports</a></th>
+                </tr>
+                <tr>
+                  <th id="14" class="World_Geography"><a >World Geography</a></th>
+                </tr>
+                <tr>
+                  <th id="15" class="Indian_History"><a >Indian History</a></th>
+                </tr>
+                <tr>
+                  <th id="16" class="Technology"><a >Technology</a></th>
+                </tr>
+                <tr>
+                  <th id="17" class="World_Organisation"><a >World Organisation</a></th>
+                </tr>
+              </thead>
+            </table>
+
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+<div style="background:white" id="eng">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:-60px;font-size:30px">English</h3>
+  </p>
+
+
+  <div id="topic" style="margin-top:80px">
+    <div  id="accordion">
+      <div  style="margin-top:15px;margin-left:35px;width:80%">
+        <div id="collapse2" >
+          <div class="panel-body">
+
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th id="0" class="Antonyms"><a >Antonyms</a></th>
+                </tr>
+                <tr>
+                  <th id="1" class="Common_Error_Detection"><a >Common Error Detection</a></th>
+                </tr>
+                <tr>
+                  <th id="2" class="Spelling_Check"><a >Spelling Check</a></th>
+                </tr>
+                <tr>
+                  <th id="3" class="Verbal_Analogies"><a >Verbal Analogies</a></th>
+                </tr>
+                <tr>
+                  <th id="4" class="One_Word_Substitution"><a >One Word Substitution</a></th>
+                </tr>
+                <tr>
+                  <th id="5" class="Selection_Words"><a >Selection Words</a></th>
+                </tr>
+                <tr>
+                  <th id="6" class="Sentance_Completition"><a >Sentance Completition</a></th>
+                </tr>
+
+              </thead>
+            </table>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+
+
+<div id="level_page" style="margin-top:80px">
+  <p onclick="goBack(2)" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:fixed;z-index:3;margin-left:50px;margin-top:-60px;font-size:25px"></h5>
+  </p>
+
+  <div class="container"  id="MyDiv">
+    <table class="table"  id="myTable_eng">
+      <thead>
+        <tr>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+
+<div id="mcq">
+  <div id="">
+    <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+      <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px"></h5>
+    </p>
+
+
+    <div style="margin-top:75px">
+      <div class="container">
+        <div id="question">what is the capital of india?</div>
+      </div>
+
+
+      <div class="transbox" id="check1" onclick="check(1)" >
+
+        <p id=option_1> Delhi</p>
+      </div>
+
+
+      <div class="transbox" id="check2" onclick="check(2)">
+        <p id=option_2>India</p>
+      </div>
+
+      <div class="transbox" id="check3" onclick="check(3)">
+        <p id=option_3>Pune</p>
+      </div>
+
+      <div class="transbox" id="check4" onclick="check(4)" style="margin-bottom:60px">
+        <p id=option_4>GandhiNagar</p>
+      </div>
+    </div>
+
+
+
+
+
+
+    <div  class="footer" >
+      <div id="next_previous">
+        <div style="width:180px;float:left;"><div id="revious" class="btn-warning" style="width:100% " onclick="previous()" value="Reset form"> Previous</div></div>
+        <div style="margin-bottom:2px;float:left">  <div  class="btn-primary" style="width:200% " onclick="favourite__()" ><i class="material-icons" style="color:red">favorite</i></div></div>
+        <div style="margin-bottom:2px;">  <div id="next" class="btn-info" style="width:100% " onclick="next()" value="Reset form" href="#nav_p"> Next</div></div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+
+
+<div class="card" id="card" style="margin-top:60px">
+
+  <h2>You Score: <span id="starsCount" ></span> </h2>
+  <div class="stars">
+    <span class="rating" data-rating="1.5">
+      <span aria-hidden="true">
+        ★★★★★
+      </span>
+    </span>
+
+  </div>
+  <p id="correct" style="color:green;font-size:30px"></p>
+  <p id="wrong" style="color:red;font-size:30px"></p>
+
+  <h4 id="completed" style="color:blue;font-size:30px"></h4>
+  <h4 id="status" style="color:blue;font-size:30px"></h4>
+  <button id="next_level" class="btn btn-primary " onclick="showquestion()"style="width:100%"> Go TO Next Level</button>
+
+
+</div>
+
+
+
+
+
+<button id="exit_btn" href="#"  data-toggle="modal" data-target="#exit" style="display:none"><span class="glyphicon">&#xe163;</span> Log out</button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" style="margin-top:150px;">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align:center;">Do You Want To LogOut</h4>
+      </div>
+      <div class="modal-footer">
+        <center>
+          <button type="button" class="btn btn-primary"style="width:50px;" onclick="logout()" >Yes</button>
+          <button type="button" class="btn btn-danger" style="width:50px;" data-dismiss="modal">No</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" role="dialog" id="exit" style="margin-top:150px;">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="text-align:center;">Do You Want To Exit</h4>
+      </div>
+      <div class="modal-footer">
+        <center>
+          <button type="button" class="btn btn-primary"style="width:50px;" onclick="exit()" >Yes</button>
+          <button type="button" class="btn btn-danger" style="width:50px;" data-dismiss="modal">No</button>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="english_data" style="display:none">
+</div>
+
+<div id="local" style="display:none">
+</div>
+<!--
+<button  class="btn btn-success container " ><span class="glyphicon glyphicon-lock pull-left" style="margin-top:0px;background-color:red;padding:10px 10px 10px 10px"></span>Level</button>
+-->
+
+<div id="random">
+  <div id="board" style="float:left;width:33%">
+    <button type="button" class=" btn-info" name="button" style="padding-left:-20px"><span >Score : </span><br><span id="random_score">0</span></button>
+
+  </div>
+  <div class="" style="float:left;width:33%">
+    <button type="button" class=" btn-success" name="button"><span>Correct : </span><br><span id="random_correct">0</span></button>
+
+  </div>
+  <div class="" style="float:left;width:33%">
+    <button type="button" class=" btn-danger" name="button"><span>Wrong : </span><br><span id="random_wrong">0</span></button>
+
+  </div>
+
+  <div id="random_mcq">
+    <div class="container">
+      <div id="random_question" style="font-size:20px">what is x?</div>
+    </div>
+
+
+    <div class="transbox" id="random1" onclick="check(1)" >
+
+      <p id=random_1> variable</p>
+    </div>
+
+
+    <div class="transbox" id="random2" onclick="check(2)">
+      <p id=random_2>constant</p>
+    </div>
+
+    <div class="transbox" id="random3" onclick="check(3)">
+      <p id=random_3>none</p>
+    </div>
+
+    <div class="transbox" id="random4" onclick="check(4)" style="margin-bottom:60px">
+      <p id=random_4>all</p>
+    </div>
+
+  </div>
+<center>
+<p style="font-size:15px;color:gray">Keep going there is no limit<p/>
+</center>
+  <div  class="footer" id="footer" >
+    <div id="next_previous">
+      <div style="width:180px;float:left;"><div id="revious" class="btn-warning" style="width:100% " onclick="goBack()" value="Reset form"> Home page</div></div>
+      <div style="margin-bottom:2px;float:left">  <div  class="btn-primary" style="width:200% " onclick="favourite_()" ><i class="material-icons" style="color:red">favorite</i></div></div>
+      <div style="margin-bottom:2px;">  <div id="next" class="btn-info" style="width:100% " onclick="next_random()" value="Reset form" href="#board"> Next</div></div>
+    </div>
+
+  </div>
+
+
+  <div id="level_no_div" style="display:none"></div>
+
+</div>
+
+
+<div id="downloads" style="height:115%">
+
+
+  <div class="row">
+
+    <div class="column" >
+      <div class="card">
+        <a  href="#economics_d" onclick="change_d(1); m_topic_d(2,1)" style="color:black">    <img src="img/history.png" alt="John" style="width:100%">
+          <div >
+            <h5  style="font-size:1.0em">Economics</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#geography_d"><img src="img/sports.png" onclick="change_d(4)"  onclick="m_topic_d(2,1)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.0em" >Geography</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#generalawareness_d"><img src="img/history.png" onclick="change_d(5)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.0em">Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#history_d"><img src="img/sports.png" alt="John" style="width:100%" onclick="change_d(6)"></a>
+        <div >
+          <h5 style="font-size:1.0em">History</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="column" >
+      <div class="card">
+        <a href="#maths_d"><img src="img/sports.png" alt="John" onclick="change_d(7)" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.0em">Maths</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#politicalscience_d"><img src="img/sports.png" alt="John" style="width:100%" onclick="change_d(8)"></a>
+        <div >
+          <h5 style="font-size:0.8em">Polititcal</br>Science</h5>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#generalawareness_d"> <img  src="img/aptitude.png" onclick="change_d(3);m_topic_d(4,1)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1em">General<br>awareness</h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+<div id="economics_d" class="">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px"></h5>
+  </p>
+
+  <div class="container" style="margin-top:80px">
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(1)" href="topic_e" >Indian economics</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(2)" >Budget 2015 Highlights</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(3)" >Inflation</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(4)" >Indian Economics Planning</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(5)"  >Indian Economy And Industries</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(6)" >KVP And ATMS</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(7)" >National Income Concepts</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_economics(8)" >Finance Comission And SEBI</button></a>
+  </div>
+
+</div>
+
+
+<div id="english_d" >
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px"></h5>
+  </p>
+
+
+  <div class="container" style="margin-top:70px">
+    <a href="#topic_en"><button type="button" name="button" class="btn1 btn-lg" onclick="show_english(1)">Parts Of Speech</button></a>
+
+    <a href="#topic_en"><button type="button" name="button" class="btn1 btn-med"onclick="show_english(2)" >Participle</button></a>
+
+    <a href="#topic_e"><button type="button" name="button" class="btn1 btn-med" onclick="show_english(3)">Gerundus</button></a>
+
+    <a href="#topic_en"><button type="button" name="button" class="btn1 btn-med" onclick="show_english(4)">Conjunction</button></a>
+
+    <a href="#topic_en"><button type="button" name="button" class="btn1 btn-med" onclick="show_english(5)">Preposition</button></a>
+
+    <a href="#topic_en"><button type="button" name="button" class="btn1 btn-med" onclick="show_english(6)">Phrasal Verbs</button></a>
+  </div>
+
+</div>
+
+
+<div id="generalawareness_d" >
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px"></h5>
+  </p>
+
+  <div class="container">
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(1)" >List of Ministers</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(2)" >List of international Organisation Heads</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(3)">Country Capital and Currincies</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(4)">Indian PrimeMinisterrs List</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(5)">UNESCO WORLD HERITAGE Site-India</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(6)">Important Datte And Ancient Indian Science</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(7)" >2011 Census HighLights</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" onclick="show_generalawareness(8)" >List OF Bharat Ratna</button></a>
+
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" >Assorted General Awareness-1</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" >Assorted General Awareness-1</button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" >Important Organisation Headquarters </button></a>
+
+    <a href="#topic_g"><button type="button" name="button" class="btn1 btn-med" >April 2016 Exam Questions</button></a>
+  </div>
+</div>
+
+
+<div id="geography_d" >
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px">Geography</h5>
+  </p>
+
+  <div class="container" style="margin-top:80px">
+    <a href="#topic_geo"><button type="button" name="button" class="btn1 btn-med" onclick="show_geography(1)">Indian Rivers</button></a>
+
+    <a href="#topic_geo"><button type="button" name="button" class="btn1 btn-med" onclick="show_geography(2)" >Continents And  Highest Points</button></a>
+
+    <a href="#topic_geo"><button type="button" name="button" class="btn1 btn-med" onclick="show_geography(3)" >Tallest Mountain And Largest Lakes</button></a>
+
+    <a href="#topic_geo"><button type="button" name="button" class="btn1 btn-med" onclick="show_geography(4)" >Geography Assorted-1</button></a>
+
+    <a href="#topic_geo"><button type="button" name="button" class="btn1 btn-med" onclick="show_geography(5)" >Geography Assorted-2</button></a>
+
+    <a href="#topic_geo"><button type="button" name="button" class="btn1 btn-med" onclick="show_geography(6)" >Indian Physiography</button></a>
+
+    <a href="#topic_geo"><button type="button" name="button" class="btn1 btn-med" onclick="show_geography(7)" >Indian Rivers And Classification</button></a>
+  </div>
+</div>
+
+
+
+<div id="gk_d" class="">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:60px;margin-top:20px">GK</h5>
+  </p>
+
+  <div class="container" style="margin-top:80px">
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(1)">Important Days</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(2)" >650 GK Ona</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(3)" >Gk QNA March 2016-1</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(4)" >Gk QNA March 2016-2</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(5)" >Gk QNA April 2016-1</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(6)" >Gk QNA April 2016-2</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(7)" >Gk QNA April 2016-3</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn1 btn-med" onclick="show_gk(8)" >Gk QNA April 2016-4</button></a>
+    <!--
+    <a href="#topic_gk"><button type="button" name="button" class="btn btn-med" onclick="show_gk(9)" >Gk QNA April 2016-5</button></a>
+
+    <a href="#topic_gk"><button type="button" name="button" class="btn btn-med"  onclick="show_gk(10)">Gk QNA April 2016-6</button></a>
+    <a href="#topic_gk"><button type="button" name="button" class="btn btn-med" onclick="show_gk(11)" >Gk 2016-1</button></a>
+    <a href="#topic_gk"><button type="button" name="button" class="btn btn-med" onclick="show_gk(12)" >Gk 2016-2</button></a>
+    <a  href="#topic_gk"> <button type="button" name="button" class="btn btn-med"  onclick="show_gk(13)" >RRB CBT GK April 2016</button>
+  -->
+
+</div>
+
+</div>
+
+
+
+<div id="history_d" class="">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:60px;margin-top:20px">History</h5>
+  </p>
+
+  <div class="container" style="margin-top:80px">
+    <a href="#topic_h"><button type="button" name="button" class="btn1 btn-med" onclick="show_history(1)">Indian History Timeline</button></a>
+
+    <a href="#topic_h"><button type="button" name="button" class="btn1 btn-med" onclick="show_history(2)">Important Battles India </button></a>
+
+    <a href="#topic_h"><button type="button" name="button" class="btn1 btn-med" onclick="show_history(3)">Muslim Invasion</button></a>
+
+    <a href="#topic_h"><button type="button" name="button" class="btn1 btn-med" onclick="show_history(4)">Peasant Movements</button></a>
+  </div>
+</div>
+
+
+
+<div id="maths_d" class="">
+
+    <div class="nav header">
+      <p  onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+        <h3 style="position:fixed;z-index:3;margin-left:50px;margin-top:px;font-size:30px" id="head">Maths</h3>
+      </p>
+    </diV>
+  <div class="container" style="margin-top:60px">
+
+    <a  href="#topic_m" onclick="maths_topic(1)"><button type="button" name="button" class="btn1 btn-med"  href="topic_e" >Numbers</button></a>
+    <a  href="#topic_m" onclick="maths_topic(2)"><button type="button" name="button" class="btn1 btn-med"  >Simpification</button></a>
+
+    <a  href="#topic_m" onclick="maths_topic(3)"><button type="button" name="button" class="btn1 btn-med" >Percentage</button></a>
+    <a  href="#topic_m" onclick="maths_topic(4)"><button type="button" name="button" class="btn1 btn-med"  href="topic_e" >Simple And Compound Interest</button></a>
+
+    <a  href="#topic_m" onclick="maths_topic(5)"><button type="button" name="button" class="btn1 btn-med"  >Profit And Loss</button></a>
+    <a  href="#topic_r" onclick="maths_topic(6)"><button type="button" name="button" class="btn1 btn-med" >Average</button></a>
+
+
+
+    <a  href="#topic_m" onclick="maths_topic(7)"><button type="button" name="button" class="btn1 btn-med"  >Ratio And Proportion</button></a>
+    <a href="#topic_m" onclick="maths_topic(8)"><button type="button" name="button" class="btn1 btn-med"  href="topic_e" >Work And Time</button></a>
+
+
+    <a href="#topic_m" onclick="maths_topic(9)"><button type="button" name="button" class="btn1 btn-med"  >Time Speed And Distance</button></a>
+    <a href="#topic_m" onclick="maths_topic(10)"><button type="button" name="button" class="btn1 btn-med" href="topic_e" >Area And Volume</button></a>
+
+
+    <a href="#topic_m"onclick="maths_topic(11)"><button type="button" name="button" class="btn1 btn-med"  >Number Series</button></a>
+    <a href="#topic_m" onclick="maths_topic(12)"><button type="button" name="button" class="btn1 btn-med"  >Permutation Comination And Probability</button></a>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<div id="politicalscience_d" >
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px">Polititcal Science</h5>
+  </p>
+
+  <div class="container" style="margin-top:80px">
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(1)" >Making Of The Constituttion</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(2)">Constitution Preamble</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(3)">Indian Citizen Fundamental Rights</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(4)">State Policy</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(5)">Structure Of Indian Contitution</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(6)">Indian Federal System</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(7)">Emergency Provision</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(8)">President Of India</button></a>
+
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(9)">Vice President Of India </button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(10)">COuncil Of Minister</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(11)">Chief Minister</button></a>
+
+    <a href="#topic_p"><button type="button" name="button" class="btn1 btn-med" onclick="show_politicalscience(12)">UPSC</button></a>
+  </div>
+
+</div>
+
+
+
+<div id="reason_d">
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:10px"></h5>
+  </p>
+
+  <div class="container" style="margin-top:80px">
+    <a href="#topic_r"><button type="button" name="button" onclick="show_reason(1)" class="btn1 btn-med" >Spot Dissimilar One</button></a>
+
+    <a href="#topic_r"><button type="button" name="button" onclick="show_reason(2)" class="btn1 btn-med" >Syllogism</button></a>
+
+    <a href="#topic_r"><button type="button" name="button" onclick="show_reason(3)" class="btn1 btn-med" >Linear Arrangement</button></a>
+
+    <a href="#topic_r"> <button type="button" name="button" onclick="show_reason(4)" class="btn1 btn-med" >Non Verbal Series</button></a>
+  </div>
+
+</div>
+
+
+
+
+<div id="raw">
+
+  <div style="max-width:">
+    <p  style="margin-top:;color:white;position:;" id="nav_p"  >
+      <span onclick="goBack()" class="glyphicon glyphicon-arrow-left pull-left" style="margin-top:5px"></span>
+      <span class="glyphicon glyphicon-zoom-in pull-right" style="margin-right:15px;margin-top:3px" onclick="zoomin()"	></span>
+      <span class="glyphicon glyphicon-zoom-out pull-right" style="margin-right:15px;margin-top:5px" onclick="zoomout()"></span>
+      <span style="font-size:25px;z-index:3;margin-left:50px;margin-top:0">Economics</span>
+      <br>
+    </p>
+  </div>
+  <br>
+
+  <center>
+    <div id="show" style="margin-top:70px" style="max-width:100%">
+    </div>
+  </center>
+
+
+  <!--dash-------------------------------------------------------------->
+
+
+
+
+
+
+</div>
+
+
+<div id="dashboard" >
+
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:15px">Dashboard</h5>
+  </p>
+
+
+
+  <div class="col-lg-4 col-md-4" style="margin-top:30px;" >
+    <div class="panel panel-danger" >
+      <div class="panel-heading">
+        <div class="">
+          <div class="">
+            <span class="x-icon-headings-invert icon-x-order x-icon-headings"></span>
+            <h3 class="header-white header-smaller" id="score" style="font-size:30px"><strong></strong></h3>
+
+
+
+          </div>
+          <div class="">
+
+          </div>
+        </div>
+      </div>
+
+      <div class="panel-footer">
+        <div class="row">
+          <div class="col-lg-4 clearfix"><span class="pull-left">Overall Perfomance</span></div>
+          <div class="col-lg-4 clearfix"><span class="pull-left" id="overall_moved"> </span></div>
+          <div class="col-lg-4 clearfix">
+            <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:25px">
+              <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="80"
+              aria-valuemin="0" aria-valuemax="100" id="overall_show">
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="panel-footer">
+      <div class="row">
+        <div class="col-lg-4 clearfix"><span class="pull-left">Reasoning</span></div>
+        <div class="col-lg-4 clearfix"><span class="pull-left" id="reasoning_moved"></span></div>
+        <div class="col-lg-4 clearfix">
+          <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+            <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+            aria-valuemin="0" aria-valuemax="100" id="reasoning_show">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+
+
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-lg-4 clearfix"><span class="pull-left">GK</span></div>
+      <div class="col-lg-4 clearfix"><span class="pull-left" id="gk_moved"> </span></div>
+      <div class="col-lg-4 clearfix">
+        <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+          <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" aria-valuenow="80"
+          aria-valuemin="0" aria-valuemax="100" id="gk_show">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+  <div class="panel-footer">
+    <div class="row">
+      <div class="col-lg-4 clearfix"><span class="pull-left">Aptitude</span></div>
+      <div class="col-lg-4 clearfix"><span class="pull-left" id="aptitude_moved"></span></div>
+      <div class="col-lg-4 clearfix">
+        <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+          <div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar" aria-valuenow="80"
+          aria-valuemin="0" aria-valuemax="100" id="aptitude_show">
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+<div class="panel-footer">
+  <div class="row">
+    <div class="col-lg-4 clearfix"><span class="pull-left">English</span></div>
+    <div class="col-lg-4 clearfix"><span class="pull-left" id="english_moved"></span></div>
+    <div class="col-lg-4 clearfix">
+      <div class="progress" style="background-color: rgba(221, 221, 221, 1);height:10px">
+        <div class="progress-bar progress-bar-default progress-bar-striped" role="progressbar" aria-valuenow="80"
+        aria-valuemin="0" aria-valuemax="100" id="english_show">
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clearfix"></div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div id="favourite">
+
+  <div class="row"  class="w3-container w3-center w3-animate-left">
+
+    <div class="column" >
+      <div class="card">
+        <a  href="#fav_apt" onclick="favourite(1)" style="color:black">    <img src="img/history.png" alt="John" style="width:100%">
+          <div >
+            <h5   id="aptitude"  style="font-size:1.0em">Aptitude</h5>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#fav_reason" onclick="favourite(2)">  <img src="img/reasoning.png" alt="John" style="width:100%"></a>
+        <div >
+          <h5 data-toggle="collapse" data-parent="#accordion" href="#collapse4"   style="font-size:1.0em">Reasoning</h5>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="column" >
+      <div class="card">
+        <a href="#fav_gk"> <img  src="img/aptitude.png" onclick="favourite(3)" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.0em">Gk</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#fav_eng"><img src="img/sports.png" onclick="favourite(4)"   alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:1.0em" >English</h5>
+        </div>
+      </div>
+    </div>
+    <div class="column" >
+      <div class="card">
+        <a href="#fav_apt" ><img src="img/sports.png" onclick="fav_play()" alt="John" style="width:100%"></a>
+        <div >
+          <h5 style="font-size:0.8em">Play Favourite</h5>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+
+</div>
+
+
+<div id="fav_mcq" >
+
+
+  <p onclick="goBack()" style="font-size:25px;margin-top:;color:white" id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span>
+    <h5 id="nav" style="position:relative;z-index:3;margin-left:50px;margin-top:18px" class="fav_head"></h5>
+  </p>
+
+  <div id="fav_show" style="margin-top:60px">
+  </div>
+
+
+</div>
+
+<div id="fav_play">
+
+  <div id="random">
+    <div id="board" style="float:left;width:33%">
+      <button type="button" class=" btn-info" name="button" style="padding-left:-20px"><span >Score : </span><br><span id="random_score">0</span></button>
+
+    </div>
+    <div class="" style="float:left;width:33%">
+      <button type="button" class=" btn-success" name="button"><span>Correct : </span><br><span id="random_correct">0</span></button>
+
+    </div>
+    <div class="" style="float:left;width:33%">
+      <button type="button" class=" btn-danger" name="button"><span>Wrong : </span><br><span id="random_wrong">0</span></button>
+
+    </div>
+
+    <div id="random_mcq">
+      <div class="container">
+        <div id="fav_question">what is x?</div>
+      </div>
+
+
+      <div class="transbox" id="random1" onclick="fav(1)" >
+
+        <p id="fav1"> variable</p>
+      </div>
+
+
+      <div class="transbox" id="random2" onclick="fav(2)">
+        <p id="fav2">constant</p>
+      </div>
+
+      <div class="transbox" id="random3" onclick="fav(3)">
+        <p id="fav3">none</p>
+      </div>
+
+      <div class="transbox" id="random4" onclick="fav(4)" style="margin-bottom:60px">
+        <p id="fav4">all</p>
+      </div>
+
+    </div>
+
+
+    <div  class="footer" id="footer" >
+      <div id="next_previous">
+        <div style="width:180px;float:left;"><div id="revious" class="btn-warning" style="width:100% " onclick="goBack()" value="Reset form"> Home page</div></div>
+        <div style="margin-bottom:2px;float:left">  <div  class="btn-primary" style="width:200% " onclick="favourite_()" ><i class="material-icons" style="color:red">favorite</i></div></div>
+        <div style="margin-bottom:2px;">  <div id="next" class="btn-info" style="width:100% " onclick="next_fav()" value="Reset form" href="#board"> Next</div></div>
+
+      </div>
+
+    </div>
+
+
+
+  </div>
+
+</div>
+
+
+
+
+
+
+<div id="loader"></div>
+
+
+
+</body>
+
+</html>

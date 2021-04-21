@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Latest compiled and minified CSS -->
+
+    <script src="js/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/index.css" />
+    <script src="js/index.js"></script>
+
+    <script src="js/question.js"></script>
+
+    <script src="js/ad.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+
+
+
+    <title>SpotdoIt</title>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+
+    $(document).ready(function(){
+
+    $(".card").hide("fast");
+    })
+
+    var config = {
+      apiKey: "AIzaSyDPXdnGPzLiYSWP052wn-FLALO1QeJQsn8",
+      authDomain: "spotdoit14812.firebaseapp.com",
+      databaseURL: "https://spotdoit14812.firebaseio.com",
+      projectId: "spotdoit14812",
+      storageBucket: "spotdoit14812.appspot.com",
+      messagingSenderId: "226675650881"
+    };
+    firebase.initializeApp(config);
+
+
+
+    </script>
+
+<style media="screen">
+
+#nav_p{
+font-size: 20px;
+padding-top:2px;
+
+}
+            div.transbox {
+              margin: 20px;
+              background-color: #009F;
+              border: 1px solid black;
+              opacity: 0.8;
+              filter: alpha(opacity=80); /* For IE8 and earlier */
+            }
+
+            div.transbox p {
+              margin: 3%;
+              font-weight: bold;
+              color: #000000;
+            }
+
+
+            .card {
+              background-color: #2ECC71;
+              display: flex;
+              margin-top:100px;
+              box-shadow: 5px 10px ;
+              align-items: center;
+              flex-flow: column;
+            text-align: center;
+            }
+
+            h1 {
+              font-family:  verdana;
+
+              font-size: 50px;
+              color:#000 ;
+              text-shadow: 2px 2px 5px red;
+            }
+
+            h2 {
+              font-family: verdana;
+              font-size: 30px;
+              color: #E74C3C;
+              text-shadow: 1px 1px 5px black;
+            }
+
+
+
+            .rating {
+              font-size: 4em;
+              background: linear-gradient(to right, gold, gold 20%, gold 1%, gold 99%);
+              background-clip: text;
+              -webkit-background-clip: text;
+              color: rgba(0,0,0,0);
+              text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+            }
+
+            /** Page formatting, not related to this pen **/
+
+            footer {
+              padding: 15px;
+            }
+
+            footer a {
+              text-decoration:none;
+              color: #a53;
+            }
+
+            .stars {
+              background: #34495E;
+              height: 40px;
+              width: 300px;
+              padding: 10px;
+              border-radius: 25px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: row-reverse;
+              -webkit-box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+              -moz-box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+              box-shadow: 5px 5px 5px 0px rgba(44,62,80,1);
+            }
+
+            .stars input {
+              position: absolute;
+              left: -999999px;
+            }
+
+            label {
+              height: 30px;
+              width: 30px;
+              padding: 5px;
+              color: transparent;
+            }
+
+            label::before {
+              content: '★';
+              color: #ffffff;
+              font-size: 30px;
+              line-height: 30px;
+              margin-right: -100%;
+            }
+
+
+            label:hover ~ label::before,
+            .stars input:checked ~ label::before {
+              color: #ffa500;
+              font-size: 35px;
+            }
+
+
+
+
+</style>
+</head>
+  <body >
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a id="home" onclick="closeNav()" > <span class="glyphicon">&#xe021;</span> Home</a>
+      <a id="user" href="#"> <span class="glyphicon">&#xe008;</span> User</a>
+      <a id="dashboard" href="progress_bar.html" onclick="dash()"> <span class="glyphicon">&#xe010;</span> Dashboard</a>
+      <a id="setting" href="#"><i class="fa fa-cog fa-spin" style="font-size:24px"></i> Setting</a>
+      <a id="help" href="#"><i style="font-size:24px" class="fa">&#xf128;</i> Help</a>
+      <a id="log" href="#" onclick="logout()"><span class="glyphicon">&#xe163;</span> Log out</a>
+      <a id="About" href="#"> About</a>
+
+    </div>
+    <p onclick="goBack()"  id="nav_p" class="glyphicon glyphicon-arrow-left pull-left"></span><span id="heading" > </span>
+    </p>
+
+
+    <button id="modal_btn" href="#"  data-toggle="modal" data-target="#modal_org" style="display:none"><span class="glyphicon">&#xe163;</span> Log out</button>
+
+
+
+    <div id="mcq">
+    <div class="container">
+      <div id="question"></div>
+    </div>
+
+
+    <div class="transbox" id="check1" onclick="check_1()" >
+
+      <p id=option_1> </p>
+    </div>
+
+
+      <div class="transbox" id="check2" onclick="check_2()">
+        <p id=option_2></p>
+      </div>
+
+      <div class="transbox" id="check3" onclick="check_3()">
+          <p id=option_3></p>
+        </div>
+
+    <div class="transbox" id="check4" onclick="check_4()" style="margin-bottom:60px">
+      <p id=option_4></p>
+      </div>
+
+    </div>
+
+    <div class="card container">
+
+      <h1>Your Score★</h1>
+      <div class="stars">
+        <span class="rating" data-rating="1.5">
+          <span aria-hidden="true">
+            ★★★★★
+          </span>
+        </span>
+
+        </div>
+      <h2>You Score: <span id="starsCount" ></span> </h2>
+      <h4 id="completed" style="color:red;font-size:30px"></h4>
+      <button id="next_level" class="btn btn-primary btn-lg" onclick="showquestion()"style="width:100%"> Go TO Next Level</button>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+    <div  class="footer" >
+      <div id="next_previous">
+      <div style="width:180px;float:left;"><div id="revious" class="btn-warning" style="width:100% " onclick="previous()" value="Reset form"> Previous</div></div>
+  <div style="margin-bottom:2px;">  <div id="next" class="btn-info" style="width:100% " onclick="next()" value="Reset form" href="#nav_p"> Next</div></div>
+  </div>
+
+    </div>
+
+
+  </body>
+</html>
